@@ -14,11 +14,11 @@ type TextProps = AllowedCommonCssProps &
     variant?: 'body' | 'subBody' | 'title';
   };
 
-const DefaultText = styled('span')<TextProps>(({ as, variant, ...rest }) => ({
-  ...filterCssProps(rest, [
-    ...ALLOWED_COMMON_CSS_KEYS,
-    ...ALLOWED_TEXT_CSS_KEYS,
-  ]),
-}));
-
-export const Text: React.FC<TextProps> = (props) => <DefaultText {...props} />;
+export const Text: React.FC<TextProps> = styled('span')<TextProps>(
+  ({ as, variant, ...rest }) => ({
+    ...filterCssProps(rest, [
+      ...ALLOWED_COMMON_CSS_KEYS,
+      ...ALLOWED_TEXT_CSS_KEYS,
+    ]),
+  })
+);
