@@ -5,7 +5,7 @@ import {
   ALLOWED_TEXT_CSS_KEYS,
   AllowedTextCssProps,
   filterCssProps,
-} from './propUtils';
+} from '../utils/css';
 
 type TextProps = AllowedCommonCssProps &
   AllowedTextCssProps & {
@@ -19,6 +19,8 @@ export const Text: React.FC<TextProps> = styled('span')<TextProps>(
     margin: 0,
     padding: 0,
     fontWeight: 400,
+    fontFamily:
+      "'Hiragino Kaku Gothic Pro', 'メイリオ', 'ＭＳ Ｐゴシック', -apple-system, BlinkMacSystemFont, sans-serif",
     ...((variant === 'body' || as === 'p') && {
       fontSize: '1rem',
     }),
@@ -26,7 +28,7 @@ export const Text: React.FC<TextProps> = styled('span')<TextProps>(
       fontSize: '0.875rem',
     }),
     ...((variant === 'title' || as?.includes('h')) && {
-      fontSize: '2rem',
+      fontSize: '1.5rem',
     }),
     ...filterCssProps(rest, [
       ...ALLOWED_COMMON_CSS_KEYS,

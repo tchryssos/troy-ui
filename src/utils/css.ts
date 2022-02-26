@@ -48,13 +48,13 @@ export const ALLOWED_COMMON_CSS_KEYS = [
 ] as const;
 
 export type AllowedCommonCssProps = {
-  [k in typeof ALLOWED_COMMON_CSS_KEYS[number]]: CSS.Properties[k];
+  [k in typeof ALLOWED_COMMON_CSS_KEYS[number]]?: CSS.Properties[k];
 };
 
 export const ALLOWED_TEXT_CSS_KEYS = ['lineHeight', 'lineClamp'] as const;
 
 export type AllowedTextCssProps = {
-  [k in typeof ALLOWED_TEXT_CSS_KEYS[number]]: CSS.Properties[k];
+  [k in typeof ALLOWED_TEXT_CSS_KEYS[number]]?: CSS.Properties[k];
 };
 
 export const filterCssProps = (
