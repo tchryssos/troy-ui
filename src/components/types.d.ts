@@ -47,3 +47,5 @@ export type CommonAllowedCss = Pick<
   | 'position'
   | 'boxShadow'
 >;
+
+export type TextAllowedCss = Pick<CSS.Properties, 'lineClamp' | 'lineHeight'>;
