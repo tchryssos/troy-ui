@@ -1,6 +1,6 @@
 import * as CSS from 'csstype';
 
-export const AllowedCommonCssKeys = [
+export const ALLOWED_COMMON_CSS_KEYS = [
   'margin',
   'marginTop',
   'marginRight',
@@ -47,6 +47,25 @@ export const AllowedCommonCssKeys = [
   'boxShadow',
 ] as const;
 
-export type AllowedCommonCssKeysType = {
-  [k in typeof AllowedCommonCssKeys[number]]: CSS.Properties[k];
+export type AllowedCommonCssProps = {
+  [k in typeof ALLOWED_COMMON_CSS_KEYS[number]]: CSS.Properties[k];
 };
+
+export const ALLOWED_TEXT_CSS_KEYS = ['lineHeight', 'lineClamp'] as const;
+
+export type AllowedTextCssProps = {
+  [k in typeof ALLOWED_TEXT_CSS_KEYS[number]]: CSS.Properties[k];
+};
+
+export const filterCssProps = (
+  props: Record<string, any>,
+  allowedPropKeys: (keyof CSS.Properties)[]
+) =>
+  Object.keys(props).reduce((propObj, currPropKey) => {
+    const nextPropObj = { ...propObj };
+    if ((allowedPropKeys as string[]).includes(currPropKey)) {
+      (nextPropObj as Record<string, unknown>)[currPropKey] =
+        props[currPropKey];
+    }
+    return nextPropObj;
+  }, {} as Partial<CSS.Properties>);
