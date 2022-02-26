@@ -15,24 +15,26 @@ type TextProps = AllowedCommonCssProps &
   };
 
 export const Text: React.FC<TextProps> = styled('span')<TextProps>(
-  ({ as, variant, ...rest }) => ({
-    margin: 0,
-    padding: 0,
-    fontWeight: 400,
-    fontFamily:
-      "'Hiragino Kaku Gothic Pro', 'メイリオ', 'ＭＳ Ｐゴシック', -apple-system, BlinkMacSystemFont, sans-serif",
-    ...((variant === 'body' || as === 'p') && {
-      fontSize: '1rem',
-    }),
-    ...(variant === 'subBody' && {
-      fontSize: '0.875rem',
-    }),
-    ...((variant === 'title' || as?.includes('h')) && {
-      fontSize: '1.5rem',
-    }),
-    ...filterCssProps(rest, [
-      ...ALLOWED_COMMON_CSS_KEYS,
-      ...ALLOWED_TEXT_CSS_KEYS,
-    ]),
-  })
+  ({ as, variant, theme, ...rest }) => {
+    console.log(as, variant, theme);
+    return {
+      margin: 0,
+      padding: 0,
+      fontWeight: theme.fontWeight.regular,
+      fontFamily: theme.fontFamily.normal,
+      ...((variant === 'body' || as === 'p') && {
+        fontSize: theme.fontSize.body,
+      }),
+      ...(variant === 'subBody' && {
+        fontSize: theme.fontSize.subBody,
+      }),
+      ...((variant === 'title' || as?.includes('h')) && {
+        fontSize: theme.fontSize.title,
+      }),
+      ...filterCssProps(rest, [
+        ...ALLOWED_COMMON_CSS_KEYS,
+        ...ALLOWED_TEXT_CSS_KEYS,
+      ]),
+    };
+  }
 );
