@@ -14,9 +14,38 @@ export default {
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof Text> = (args) => <Text {...args} />;
 
-export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-Default.args = {
-  children: 'Testing',
-  margin: '200px',
+export const SubBody = Template.bind({});
+SubBody.args = {
+  variant: 'subBody',
+  children:
+    "I've seen your picture / Your name in lights above it / This is your big debut / It's like a dream come true / So won't you smile for the camera / I know they're gonna love it, Peg",
+};
+
+export const Body = Template.bind({});
+Body.args = {
+  children:
+    "I've seen your picture / Your name in lights above it / This is your big debut / It's like a dream come true / So won't you smile for the camera / I know they're gonna love it, Peg",
+  variant: 'body',
+};
+
+export const Title = Template.bind({});
+Title.args = {
+  variant: 'title',
+  children:
+    "I've seen your picture / Your name in lights above it / This is your big debut / It's like a dream come true / So won't you smile for the camera / I know they're gonna love it, Peg",
+};
+
+export const AsPTag = Template.bind({});
+AsPTag.args = {
+  children:
+    "I've seen your picture / Your name in lights above it / This is your big debut / It's like a dream come true / So won't you smile for the camera / I know they're gonna love it, Peg",
+  as: 'p',
+};
+
+export const AsHTag = Template.bind({});
+AsHTag.args = {
+  children:
+    "I've seen your picture / Your name in lights above it / This is your big debut / It's like a dream come true / So won't you smile for the camera / I know they're gonna love it, Peg",
+  as: 'h1',
 };
