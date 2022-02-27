@@ -45,6 +45,18 @@ export const ALLOWED_COMMON_CSS_KEYS = [
   'borderLeftStyle',
   'position',
   'boxShadow',
+  'gridColumnStart',
+  'gridColumnEnd',
+  'gridRowStart',
+  'gridRowEnd',
+  'alignSelf',
+  'justifySelf',
+  'overflow',
+  'textOverflow',
+  'top',
+  'right',
+  'bottom',
+  'left',
 ] as const;
 
 export type AllowedCommonCssProps = {
@@ -55,6 +67,37 @@ export const ALLOWED_TEXT_CSS_KEYS = ['lineHeight', 'lineClamp'] as const;
 
 export type AllowedTextCssProps = {
   [k in typeof ALLOWED_TEXT_CSS_KEYS[number]]?: CSS.Properties[k];
+};
+
+export const ALLOWED_FLEXBOX_CSS_KEYS = [
+  'gap',
+  'justifyContent',
+  'alignItems',
+  'flex',
+  'flexDirection',
+  'flexWrap',
+] as const;
+
+export type AllowedFlexboxCssProps = {
+  [k in typeof ALLOWED_FLEXBOX_CSS_KEYS[number]]?: CSS.Properties[k];
+};
+
+export const ALLOWED_GRIDBOX_CSS_KEYS = [
+  'gap',
+  'rowGap',
+  'columnGap',
+  'gridTemplateColumns',
+  'gridTemplateRows',
+  'justifyItems',
+  'alignItems',
+  'placeItems',
+  'justifyContent',
+  'alignContent',
+  'grid',
+] as const;
+
+export type AllowedGridBoxCssProps = {
+  [k in typeof ALLOWED_GRIDBOX_CSS_KEYS[number]]?: CSS.Properties[k];
 };
 
 export const filterCssProps = (

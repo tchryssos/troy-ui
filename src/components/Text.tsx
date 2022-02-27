@@ -16,8 +16,6 @@ type TextProps = AllowedCommonCssProps &
 
 export const Text: React.FC<TextProps> = styled('span')<TextProps>(
   ({ as, variant, theme, ...rest }) => ({
-    margin: 0,
-    padding: 0,
     fontWeight: theme.fontWeight.regular,
     fontFamily: theme.fontFamily.normal,
     ...((variant === 'body' || as === 'p') && {
