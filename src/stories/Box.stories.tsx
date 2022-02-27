@@ -1,9 +1,9 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { Box as BoxComponent } from '~/components/Box';
+import { Box as BoxComponent } from '~/components/box/Box';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Box',
+  title: 'Box/Box',
   component: BoxComponent,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {

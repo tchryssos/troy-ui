@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { pxToRem } from '~/utils/pxToRem';
+import { FlexBox } from './box/FlexBox';
 
-import { FlexBox } from '../box/FlexBox';
 import { BaseButtonProps } from './types';
 
 type StyledProps = Pick<Required<BaseButtonProps>, 'transparent'>;
@@ -44,7 +44,8 @@ export const Button: React.FC<BaseButtonProps> = ({
   if (buttonLike) {
     return (
       <ButtonLike
-        center
+        justifyContent="center"
+        alignItems="center"
         className={className}
         transparent={Boolean(transparent)}
       >
