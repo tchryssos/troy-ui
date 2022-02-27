@@ -18,8 +18,8 @@ export const FlexBox: React.FC<FlexBoxProps> = ({
   <Box
     display="flex"
     flexWrap={flexWrap || 'wrap'}
-    justifyContent={justifyContent || center ? 'center' : 'flex-start'}
-    alignItems={alignItems || center ? 'center' : 'flex-start'}
+    justifyContent={justifyContent || (center ? 'center' : 'flex-start')}
+    alignItems={alignItems || (center ? 'center' : 'flex-start')}
     {...rest}
   >
     {children}

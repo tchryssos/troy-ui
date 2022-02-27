@@ -21,10 +21,12 @@ export const GridBox = Template.bind({});
 GridBox.args = {
   children: (
     <>
-      <img src="https://static.wikia.nocookie.net/kingofthehill/images/c/c4/Hank_Hill.png" />
-      <img src="https://static.wikia.nocookie.net/kingofthehill/images/c/c7/Bobby.png" />
+      <div style={{ border: '1px solid black' }}>Squirtle</div>
+      <div style={{ border: '1px solid black' }}>Charmander</div>
+      <div style={{ border: '1px solid black' }}>Bulbasaur</div>
+      <div style={{ border: '1px solid black' }}>Cyndaquil</div>
+      <div style={{ border: '1px solid black' }}>Totodile</div>
+      <div style={{ border: '1px solid black' }}>Chikorita</div>
     </>
   ),
-  width: '100%',
-  justifyContent: 'space-between',
 };
