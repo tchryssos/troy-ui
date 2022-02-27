@@ -1,6 +1,10 @@
 const path = require('path');
 
 module.exports = {
+  // See https://github.com/storybookjs/storybook/issues/10231#issuecomment-985589096
+  features: {
+    emotionAlias: false,
+  },
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-links',
