@@ -1,5 +1,8 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
+
 import { FlexBox as FlexBoxComponent } from '~/components/box/FlexBox';
+
+import { COMMON_ARG_TYPES } from './argTypes';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -7,7 +10,7 @@ export default {
   component: FlexBoxComponent,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
-    backgroundColor: { control: 'color' },
+    ...COMMON_ARG_TYPES,
   },
 } as ComponentMeta<typeof FlexBoxComponent>;
 
@@ -21,8 +24,14 @@ export const FlexBox = Template.bind({});
 FlexBox.args = {
   children: (
     <>
-      <img src="https://static.wikia.nocookie.net/kingofthehill/images/c/c4/Hank_Hill.png" />
-      <img src="https://static.wikia.nocookie.net/kingofthehill/images/c/c7/Bobby.png" />
+      <img
+        alt="Hank Hill"
+        src="https://static.wikia.nocookie.net/kingofthehill/images/c/c4/Hank_Hill.png"
+      />
+      <img
+        alt="Bobby Hill"
+        src="https://static.wikia.nocookie.net/kingofthehill/images/c/c7/Bobby.png"
+      />
     </>
   ),
   width: '100%',
