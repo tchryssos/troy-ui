@@ -8,14 +8,16 @@
   "module": "dist/module.ts",
   "types": "dist/types.d.ts",
   "peerDependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
     "@emotion/react": "^11.8.1",
-    "@emotion/styled": "^11.8.1"
+    "@emotion/styled": "^11.8.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
     "@emotion/eslint-plugin": "^11.7.0",
+    "@emotion/react": "^11.9.0",
+    "@emotion/styled": "^11.8.1",
     "@storybook/addon-actions": "^6.4.19",
     "@storybook/addon-essentials": "^6.4.19",
     "@storybook/addon-interactions": "^6.4.19",
@@ -43,6 +45,8 @@
     "lodash.merge": "^4.6.2",
     "parcel": "^2.3.2",
     "prettier": "^2.5.1",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "typescript": "^4.5.5"
   },
   "husky": {
