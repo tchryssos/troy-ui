@@ -10,7 +10,7 @@ const breakpointValues = {
   xl: 1440,
 };
 
-const standardModeColors: ColorModeColors = {
+const lightModeColors: ColorModeColors = {
   background: '#fafafa',
   text: '#17242b',
   success: '#00784e',
@@ -20,11 +20,11 @@ const standardModeColors: ColorModeColors = {
   smudge: 'rgba(0,0,0,0.05)',
 };
 
-const standardModeFilters = {
+const lightModeFilters = {
   brightnessMod: 0.9,
 };
 
-const theme = {
+const baseTheme = {
   breakpointValues,
   breakpoints: {
     xxs: `@media only screen and (max-width: ${breakpointValues.xxs}px)`,
@@ -83,12 +83,16 @@ const theme = {
   },
 };
 
-export const StandardTheme = {
-  ...theme,
-  colors: standardModeColors,
-  filters: standardModeFilters,
+export const LightTheme = {
+  ...baseTheme,
+  colors: lightModeColors,
+  filters: lightModeFilters,
 };
 
-export type ThemeShape = typeof StandardTheme;
+export const themes = {
+  light: LightTheme,
+};
+
+export type ThemeShape = typeof LightTheme;
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Theme extends ThemeShape {}

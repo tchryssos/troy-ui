@@ -5,12 +5,15 @@ import {
 } from '@emotion/react';
 import merge from 'lodash.merge';
 
-import { StandardTheme, Theme } from '~/constants/theme';
+import { LightTheme, Theme } from '~/constants/theme';
+import { ColorMode } from '~/typings/colorMode';
 import { pxToRem } from '~/utils/pxToRem';
 
 interface ThemeProviderProps {
-  theme?: Partial<Theme>;
+  theme?: Theme;
+  customTheme?: Partial<Theme>;
   children: React.ReactNode | React.ReactNode[];
+  colorMode?: ColorMode;
 }
 
 const marPadZero = css`
@@ -79,10 +82,11 @@ const createGlobalStyles = (theme: Theme) => css`
 `;
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
-  theme,
+  theme = LightTheme,
   children,
+  customTheme,
 }) => {
-  const mergedTheme = merge(StandardTheme, theme);
+  const mergedTheme = merge(theme, customTheme);
   return (
     <EmotionThemeProvider theme={mergedTheme}>
       <Global styles={createGlobalStyles(mergedTheme)} />
