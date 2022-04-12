@@ -31,6 +31,7 @@ type StyledProps = Pick<Required<BaseButtonProps>, 'transparent'>;
 
 const StyledButton = styled.button<StyledProps>(
   ({ theme, transparent, ...rest }) => ({
+    borderRadius: theme.border.borderRadius[4],
     color: theme.colors.text,
     cursor: 'pointer',
     minHeight: theme.spacing[32],
@@ -54,7 +55,11 @@ const StyledButton = styled.button<StyledProps>(
   })
 );
 
-const ButtonLike = StyledButton.withComponent(FlexBox);
+const ButtonLikeCustom = styled(FlexBox)`
+  width: fit-content;
+`;
+
+const ButtonLike = StyledButton.withComponent(ButtonLikeCustom);
 
 export const Button: React.FC<BaseButtonProps> = ({
   onClick,

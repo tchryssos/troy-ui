@@ -1,10 +1,11 @@
-import { StandardTheme, Theme } from '~/constants/theme';
 import {
   css,
   Global,
   ThemeProvider as EmotionThemeProvider,
 } from '@emotion/react';
 import merge from 'lodash.merge';
+
+import { StandardTheme, Theme } from '~/constants/theme';
 import { pxToRem } from '~/utils/pxToRem';
 
 interface ThemeProviderProps {
@@ -35,6 +36,7 @@ const createGlobalStyles = (theme: Theme) => css`
     box-sizing: border-box;
     font-family: ${theme.fontFamily.normal};
     color: ${theme.colors.text};
+    font-size: ${theme.fontSize.body};
   }
   #app,
   #__next {
@@ -68,6 +70,11 @@ const createGlobalStyles = (theme: Theme) => css`
   pre,
   figure {
     ${marPadZero};
+  }
+  button {
+    font-size: ${theme.fontSize.body};
+    font-family: ${theme.fontFamily.normal};
+    box-sizing: border-box;
   }
 `;
 

@@ -1,11 +1,13 @@
+/* eslint-disable no-nested-ternary */
 import styled from '@emotion/styled';
+
 import {
-  AllowedCommonCssProps,
-  AllowedFlexboxCssProps,
-  AllowedGridBoxCssProps,
   ALLOWED_COMMON_CSS_KEYS,
   ALLOWED_FLEXBOX_CSS_KEYS,
   ALLOWED_GRIDBOX_CSS_KEYS,
+  AllowedCommonCssProps,
+  AllowedFlexboxCssProps,
+  AllowedGridBoxCssProps,
   filterCssProps,
 } from '~/utils/css';
 

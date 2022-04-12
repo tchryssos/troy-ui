@@ -1,4 +1,5 @@
 import { AllowedCommonCssProps, AllowedFlexboxCssProps } from '~/utils/css';
+
 import { Box } from './Box';
 
 type FlexBoxProps = Omit<AllowedCommonCssProps, 'display'> &
@@ -16,10 +17,10 @@ export const FlexBox: React.FC<FlexBoxProps> = ({
   ...rest
 }) => (
   <Box
+    alignItems={alignItems || (center ? 'center' : 'flex-start')}
     display="flex"
     flexWrap={flexWrap || 'wrap'}
     justifyContent={justifyContent || (center ? 'center' : 'flex-start')}
-    alignItems={alignItems || (center ? 'center' : 'flex-start')}
     {...rest}
   >
     {children}

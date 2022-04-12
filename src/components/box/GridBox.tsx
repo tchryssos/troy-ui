@@ -1,5 +1,6 @@
 import { AllowedCommonCssProps, AllowedGridBoxCssProps } from '~/utils/css';
 import { pxToRem } from '~/utils/pxToRem';
+
 import { Box } from './Box';
 
 type GridBoxProps = Omit<AllowedCommonCssProps, 'display'> &
@@ -17,9 +18,9 @@ export const GridBox: React.FC<GridBoxProps> = ({
   ...rest
 }) => (
   <Box
+    columnGap={columnGap || pxToRem(8)}
     display="grid"
     gridTemplateColumns={gridTemplateColumns || `repeat(${columns}, 1fr)`}
-    columnGap={columnGap || pxToRem(8)}
     rowGap={rowGap || pxToRem(8)}
     {...rest}
   >
