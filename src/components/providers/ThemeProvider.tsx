@@ -4,9 +4,11 @@ import {
   ThemeProvider as EmotionThemeProvider,
 } from '@emotion/react';
 import merge from 'lodash.merge';
+import { useMemo } from 'react';
 
 import { LightTheme, Theme } from '~/constants/theme';
 import { ColorMode } from '~/typings/colorMode';
+import { ImportUrl } from '~/typings/theme';
 import { pxToRem } from '~/utils/pxToRem';
 
 interface ThemeProviderProps {
@@ -14,6 +16,7 @@ interface ThemeProviderProps {
   customTheme?: Partial<Theme>;
   children: React.ReactNode | React.ReactNode[];
   colorMode?: ColorMode;
+  importUrls?: ImportUrl[];
 }
 
 const marPadZero = css`
@@ -27,8 +30,8 @@ const baseStyle = css`
   ${marPadZero};
 `;
 
-const createGlobalStyles = (theme: Theme) => css`
-  /* @import url(''); */
+const createGlobalStyles = (theme: Theme, importUrls?: ImportUrl[]) => css`
+  ${importUrls?.join(' ')}
   html {
     background-color: ${theme.colors.background};
     ${baseStyle};
@@ -85,11 +88,21 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   theme = LightTheme,
   children,
   customTheme,
+  importUrls,
 }) => {
-  const mergedTheme = merge(theme, customTheme);
+  const mergedTheme = useMemo(
+    () => merge(theme, customTheme),
+    [theme, customTheme]
+  );
+
+  const globalStyles = useMemo(
+    () => createGlobalStyles(mergedTheme, importUrls),
+    [mergedTheme, importUrls]
+  );
+
   return (
     <EmotionThemeProvider theme={mergedTheme}>
-      <Global styles={createGlobalStyles(mergedTheme)} />
+      <Global styles={globalStyles} />
       {children}
     </EmotionThemeProvider>
   );

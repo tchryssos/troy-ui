@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import { Theme, themes } from '~/constants/theme';
 import { ColorMode } from '~/typings/colorMode';
@@ -16,7 +16,7 @@ export const AppWrapper: React.FC<AppWrapperProps> = ({
   customTheme,
 }) => {
   const [colorMode, setColorMode] = useState<ColorMode>('light');
-  const theme = themes[colorMode];
+  const theme = useMemo(() => themes[colorMode], [colorMode]);
 
   return (
     <ThemeProvider customTheme={customTheme} theme={theme}>
