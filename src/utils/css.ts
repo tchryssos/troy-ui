@@ -102,6 +102,7 @@ export type AllowedGridBoxCssProps = {
 };
 
 export const filterCssProps = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props: Record<string, any>,
   allowedPropKeys: (keyof CSS.Properties)[]
 ) =>

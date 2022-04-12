@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
+
 import {
   ALLOWED_COMMON_CSS_KEYS,
-  AllowedCommonCssProps,
   ALLOWED_TEXT_CSS_KEYS,
+  AllowedCommonCssProps,
   AllowedTextCssProps,
   filterCssProps,
 } from '../utils/css';
