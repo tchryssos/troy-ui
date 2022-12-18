@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { BreakpointSize } from '~/typings/theme';
 
-import { BreakpointsContext } from '../contexts/BreakpointsContext';
+import { BreakpointsContext } from '../providers/BreakpointsProvider';
 
 export const useBreakpointsLessThan = (breakpoint: BreakpointSize) => {
   const breakpoints = useContext(BreakpointsContext);

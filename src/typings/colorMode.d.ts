@@ -10,4 +10,4 @@ export interface ColorModeColors {
   smudge: ColorRgba;
 }
 
-export type ColorMode = 'light';
+export type ColorMode = 'light' | 'dark';

@@ -1,7 +1,12 @@
 import { ColorModeColors } from '~/typings/colorMode';
 import { pxToRem } from '~/utils/pxToRem';
 
-const breakpointValues = {
+// START - BREAKPOINTS - START
+const breakpointSizes = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl'] as const;
+export type Breakpoints = typeof breakpointSizes[number];
+export type BreakpointObject<T> = { [key in Breakpoints]: T };
+
+const breakpointValues: BreakpointObject<number> = {
   xxs: 479,
   xs: 480,
   sm: 768,
@@ -10,6 +15,18 @@ const breakpointValues = {
   xl: 1440,
 };
 
+const breakpoints: BreakpointObject<`@media only screen and (${string}-width: ${number}px)`> =
+  {
+    xxs: `@media only screen and (max-width: ${breakpointValues.xxs}px)`,
+    xs: `@media only screen and (min-width: ${breakpointValues.xs}px)`,
+    sm: `@media only screen and (min-width: ${breakpointValues.sm}px)`,
+    md: `@media only screen and (min-width: ${breakpointValues.md}px)`,
+    lg: `@media only screen and (min-width: ${breakpointValues.lg}px)`,
+    xl: `@media only screen and (min-width: ${breakpointValues.xl}px)`,
+  };
+// END - BREAKPOINTS - END
+
+// START - COLORS - START
 const lightModeColors: ColorModeColors = {
   background: '#fafafa',
   text: '#17242b',
@@ -20,20 +37,28 @@ const lightModeColors: ColorModeColors = {
   smudge: 'rgba(0,0,0,0.05)',
 };
 
-const lightModeFilters = {
-  brightnessMod: 0.9,
+const darkModeColors: ColorModeColors = {
+  background: '#1d1f21',
+  text: '#c5c8c6',
+  success: '#6fbd68',
+  danger: '#9a4d4d',
+  accentHeavy: '#2a3c3e',
+  accentLight: '#505253',
+  smudge: 'rgba(255,255,255,0.1)',
 };
+
+const lightModeFilters = {
+  brightnessMod: 0.8,
+};
+
+const darkModeFilters = {
+  brightnessMod: 1.2,
+};
+// END - COLORS - END
 
 const baseTheme = {
   breakpointValues,
-  breakpoints: {
-    xxs: `@media only screen and (max-width: ${breakpointValues.xxs}px)`,
-    xs: `@media only screen and (min-width: ${breakpointValues.xs}px)`,
-    sm: `@media only screen and (min-width: ${breakpointValues.sm}px)`,
-    md: `@media only screen and (min-width: ${breakpointValues.md}px)`,
-    lg: `@media only screen and (min-width: ${breakpointValues.lg}px)`,
-    xl: `@media only screen and (min-width: ${breakpointValues.xl}px)`,
-  },
+  breakpoints,
   spacing: {
     0: pxToRem(0),
     2: pxToRem(2),
@@ -53,11 +78,11 @@ const baseTheme = {
     128: pxToRem(128),
   },
   border: {
-    borderWidth: {
+    width: {
       1: pxToRem(1),
       3: pxToRem(3),
     },
-    borderRadius: {
+    radius: {
       2: pxToRem(2),
       4: pxToRem(4),
       round: '50%',
@@ -95,8 +120,15 @@ export const LightTheme = {
   filters: lightModeFilters,
 };
 
+export const DarkTheme = {
+  ...baseTheme,
+  colors: darkModeColors,
+  filters: darkModeFilters,
+};
+
 export const themes = {
   light: LightTheme,
+  dark: DarkTheme,
 };
 
 export type ThemeShape = typeof LightTheme;
