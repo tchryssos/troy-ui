@@ -16,7 +16,6 @@ type TextProps = AllowedCommonCssProps &
       | 'body-sm'
       | 'body'
       | 'body-lg'
-      | 'title-xs'
       | 'title-sm'
       | 'title'
       | 'title-lg'
@@ -36,7 +35,7 @@ export const Text: React.FC<TextProps> = styled('span')<TextProps>(
     ...(variant === 'body-lg' && {
       fontSize: theme.fontSize[18],
     }),
-    ...((variant === 'title-xs' ||
+    ...((variant === 'title-sm' ||
       as === 'h4' ||
       as === 'h5' ||
       as === 'h6') && {

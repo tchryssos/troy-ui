@@ -21,11 +21,13 @@ export const ThemeContext = createContext<ThemeContextObj>({
 interface ThemeProviderProps {
   children: React.ReactNode;
   overrides?: Partial<typeof themes>;
+  ignoreCssReset?: boolean;
 }
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   children,
   overrides,
+  ignoreCssReset,
 }) => {
   const [colorMode, setColorMode] = useState<ColorMode>('light');
 
@@ -50,8 +52,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     <ThemeContext.Provider value={contextValue}>
       <EmotionThemeProvider theme={theme}>
         <GlobalWrapper>
-          <Global styles={createGlobalStyles(theme)} />
-          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+          {!ignoreCssReset && <Global styles={createGlobalStyles(theme)} />}
           {children}
         </GlobalWrapper>
       </EmotionThemeProvider>

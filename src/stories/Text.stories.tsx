@@ -32,9 +32,37 @@ Body.args = {
   variant: 'body',
 };
 
+export const LargeBody = Template.bind({});
+LargeBody.args = {
+  children:
+    "I've seen your picture / Your name in lights above it / This is your big debut / It's like a dream come true / So won't you smile for the camera / I know they're gonna love it, Peg",
+  variant: 'body-lg',
+};
+
+export const SmallTitle = Template.bind({});
+SmallTitle.args = {
+  variant: 'title-sm',
+  children:
+    "I've seen your picture / Your name in lights above it / This is your big debut / It's like a dream come true / So won't you smile for the camera / I know they're gonna love it, Peg",
+};
+
 export const Title = Template.bind({});
 Title.args = {
   variant: 'title',
+  children:
+    "I've seen your picture / Your name in lights above it / This is your big debut / It's like a dream come true / So won't you smile for the camera / I know they're gonna love it, Peg",
+};
+
+export const LargeTitle = Template.bind({});
+LargeTitle.args = {
+  variant: 'title-lg',
+  children:
+    "I've seen your picture / Your name in lights above it / This is your big debut / It's like a dream come true / So won't you smile for the camera / I know they're gonna love it, Peg",
+};
+
+export const XtraLargeTitle = Template.bind({});
+XtraLargeTitle.args = {
+  variant: 'title-xl',
   children:
     "I've seen your picture / Your name in lights above it / This is your big debut / It's like a dream come true / So won't you smile for the camera / I know they're gonna love it, Peg",
 };

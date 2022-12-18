@@ -101,7 +101,7 @@ const baseTheme = {
   },
   fontFamily: {
     normal:
-      "'Hiragino Kaku Gothic Pro', 'メイリオ', 'ＭＳ Ｐゴシック', -apple-system, BlinkMacSystemFont, sans-serif",
+      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,'Helvetica Neue', sans-serif;",
   },
   lineHeight: {
     normal: 1.2,
