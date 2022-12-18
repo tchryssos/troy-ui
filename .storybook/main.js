@@ -16,9 +16,4 @@ module.exports = {
     config.resolve.alias['~'] = path.resolve(__dirname, '../src/');
     return config;
   },
-  // See https://github.com/storybookjs/storybook/issues/13795#issuecomment-1192075981
-  managerWebpack: (config, options) => {
-    options.cache.set = () => Promise.resolve();
-    return config;
-  },
 };
