@@ -1,7 +1,10 @@
+import { Global, ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 import { createContext, useMemo, useState } from 'react';
 
 import { Theme, themes } from '~/constants/theme';
 import { ColorMode } from '~/typings/colorMode';
+
+import { createGlobalStyles, GlobalWrapper } from './rootStyles';
 
 interface ThemeContextObj {
   theme: Theme;
@@ -45,7 +48,13 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
 
   return (
     <ThemeContext.Provider value={contextValue}>
-      {children}
+      <EmotionThemeProvider theme={theme}>
+        <GlobalWrapper>
+          <Global styles={createGlobalStyles(theme)} />
+          {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+          {children}
+        </GlobalWrapper>
+      </EmotionThemeProvider>
     </ThemeContext.Provider>
   );
 };
