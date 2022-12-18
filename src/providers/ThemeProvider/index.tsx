@@ -32,7 +32,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   const theme = useMemo(
     () => ({
       ...themes[colorMode],
-      ...overrides,
+      ...overrides?.[colorMode],
     }),
     [overrides, colorMode]
   );
