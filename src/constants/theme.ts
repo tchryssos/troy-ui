@@ -64,9 +64,15 @@ const baseTheme = {
     },
   },
   fontSize: {
-    subBody: pxToRem(12),
-    body: pxToRem(14),
-    title: pxToRem(24),
+    14: pxToRem(14),
+    16: pxToRem(16),
+    18: pxToRem(18),
+    20: pxToRem(20),
+    24: pxToRem(24),
+    32: pxToRem(32),
+    40: pxToRem(40),
+    56: pxToRem(56),
+    64: pxToRem(64),
   },
   fontFamily: {
     normal:

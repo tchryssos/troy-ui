@@ -12,21 +12,44 @@ type TextProps = AllowedCommonCssProps &
   AllowedTextCssProps & {
     className?: string;
     as?: 'p' | 'span' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-    variant?: 'body' | 'subBody' | 'title';
+    variant?:
+      | 'body-sm'
+      | 'body'
+      | 'body-lg'
+      | 'title-xs'
+      | 'title-sm'
+      | 'title'
+      | 'title-lg'
+      | 'title-xl';
   };
 
 export const Text: React.FC<TextProps> = styled('span')<TextProps>(
   ({ as, variant, theme, ...rest }) => ({
     fontWeight: theme.fontWeight.regular,
     fontFamily: theme.fontFamily.normal,
+    ...(variant === 'body-sm' && {
+      fontSize: theme.fontSize[14],
+    }),
     ...((variant === 'body' || as === 'p') && {
-      fontSize: theme.fontSize.body,
+      fontSize: theme.fontSize[16],
     }),
-    ...(variant === 'subBody' && {
-      fontSize: theme.fontSize.subBody,
+    ...(variant === 'body-lg' && {
+      fontSize: theme.fontSize[18],
     }),
-    ...((variant === 'title' || as?.includes('h')) && {
-      fontSize: theme.fontSize.title,
+    ...((variant === 'title-xs' ||
+      as === 'h4' ||
+      as === 'h5' ||
+      as === 'h6') && {
+      fontSize: theme.fontSize[20],
+    }),
+    ...((variant === 'title' || as === 'h3') && {
+      fontSize: theme.fontSize[24],
+    }),
+    ...((variant === 'title-lg' || as === 'h2') && {
+      fontSize: theme.fontSize[32],
+    }),
+    ...((variant === 'title-xl' || as === 'h1') && {
+      fontSize: theme.fontSize[56],
     }),
     ...filterCssProps(rest, [
       ...ALLOWED_COMMON_CSS_KEYS,

@@ -18,9 +18,9 @@ export default {
 const Template: ComponentStory<typeof Text> = (args) => <Text {...args} />;
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
-export const SubBody = Template.bind({});
-SubBody.args = {
-  variant: 'subBody',
+export const SmallBody = Template.bind({});
+SmallBody.args = {
+  variant: 'body-sm',
   children:
     "I've seen your picture / Your name in lights above it / This is your big debut / It's like a dream come true / So won't you smile for the camera / I know they're gonna love it, Peg",
 };
