@@ -1,14 +1,14 @@
 import { createContext, useEffect, useState } from 'react';
 
-import { Breakpoints } from '~/constants/theme';
 import { useTheme } from '~/hooks/theme';
+import { BreakpointSize } from '~/typings/breakpoints';
 
-export const BreakpointsContext = createContext<Breakpoints[]>(['xxs']);
+export const BreakpointsContext = createContext<BreakpointSize[]>(['xxs']);
 
 interface BreakpointsProviderProps {
   children: React.ReactNode;
   resizeCallback?: (e: MediaQueryListEvent) => void;
-  overrides?: Breakpoints[];
+  overrides?: BreakpointSize[];
 }
 
 export const BreakpointsProvider: React.FC<BreakpointsProviderProps> = ({
@@ -18,7 +18,7 @@ export const BreakpointsProvider: React.FC<BreakpointsProviderProps> = ({
 }) => {
   const theme = useTheme();
 
-  const [windowBreakpoints, setWindowBreakpoints] = useState<Breakpoints[]>(
+  const [windowBreakpoints, setWindowBreakpoints] = useState<BreakpointSize[]>(
     overrides || ['xxs']
   );
 
@@ -27,16 +27,16 @@ export const BreakpointsProvider: React.FC<BreakpointsProviderProps> = ({
       const queryAdjective = key === 'xss' ? 'max' : 'min';
       const query = globalThis.matchMedia(
         `(${queryAdjective}-width: ${
-          theme.breakpointValues[key as Breakpoints]
+          theme.breakpointValues[key as BreakpointSize]
         }px)`
       );
       if (query.matches) {
-        setWindowBreakpoints(arr.slice(0, i + 1) as Breakpoints[]);
+        setWindowBreakpoints(arr.slice(0, i + 1) as BreakpointSize[]);
       }
       query.addEventListener('change', (e) => {
         resizeCallback?.(e);
         setWindowBreakpoints(
-          arr.slice(0, e.matches ? i + 1 : i) as Breakpoints[]
+          arr.slice(0, e.matches ? i + 1 : i) as BreakpointSize[]
         );
       });
     });

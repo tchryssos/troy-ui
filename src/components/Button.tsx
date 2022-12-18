@@ -31,15 +31,15 @@ type StyledProps = Pick<Required<BaseButtonProps>, 'transparent'>;
 
 const StyledButton = styled.button<StyledProps>(
   ({ theme, transparent, ...rest }) => ({
-    borderRadius: theme.border.borderRadius[4],
+    borderRadius: theme.border.radius[4],
     color: theme.colors.text,
     cursor: 'pointer',
     minHeight: theme.spacing[32],
     minWidth: theme.spacing[32],
     backgroundColor: transparent ? 'transparent' : theme.colors.accentLight,
     border: transparent
-      ? `${theme.border.borderWidth[1]} solid ${theme.colors.text}`
-      : `${theme.border.borderWidth[1]} solid transparent`,
+      ? `${theme.border.width[1]} solid ${theme.colors.text}`
+      : `${theme.border.width[1]} solid transparent`,
     // Non-standard padding matches default button padding
     padding: `${pxToRem(1)} ${pxToRem(6)}`,
     ':hover, :active': {

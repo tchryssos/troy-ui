@@ -5,7 +5,7 @@ import { Box } from './Box';
 
 type GridBoxProps = Omit<AllowedCommonCssProps, 'display'> &
   AllowedGridBoxCssProps & {
-    columns: number;
+    columns?: number;
     className?: string;
   };
 

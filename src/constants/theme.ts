@@ -1,11 +1,8 @@
+import { BreakpointObject } from '~/typings/breakpoints';
 import { ColorModeColors } from '~/typings/colorMode';
 import { pxToRem } from '~/utils/pxToRem';
 
 // START - BREAKPOINTS - START
-const breakpointSizes = ['xxs', 'xs', 'sm', 'md', 'lg', 'xl'] as const;
-export type Breakpoints = typeof breakpointSizes[number];
-export type BreakpointObject<T> = { [key in Breakpoints]: T };
-
 const breakpointValues: BreakpointObject<number> = {
   xxs: 479,
   xs: 480,
