@@ -9,7 +9,7 @@ interface ThemeContextObj {
   colorMode: ColorMode;
 }
 
-const ThemeContext = createContext<ThemeContextObj>({
+export const ThemeContext = createContext<ThemeContextObj>({
   theme: themes.light,
   setColorMode: () => null,
   colorMode: 'light',

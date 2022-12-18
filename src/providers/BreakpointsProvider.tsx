@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 
 import { Breakpoints } from '~/constants/theme';
+import { useTheme } from '~/hooks/theme';
 
 const BreakpointsContext = createContext<Breakpoints[]>(['xxs']);
 
@@ -15,6 +16,8 @@ export const BreakpointsProvider: React.FC<BreakpointsProviderProps> = ({
   overrides,
   resizeCallback,
 }) => {
+  const theme = useTheme();
+
   const [windowBreakpoints, setWindowBreakpoints] = useState<Breakpoints[]>(
     overrides || ['xxs']
   );
@@ -37,7 +40,7 @@ export const BreakpointsProvider: React.FC<BreakpointsProviderProps> = ({
         );
       });
     });
-  }, [resizeCallback]);
+  }, [resizeCallback, theme]);
 
   return (
     <BreakpointsContext.Provider value={windowBreakpoints}>
