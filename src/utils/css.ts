@@ -149,21 +149,18 @@ export const filterCssProps = (
       // ... AND is one of the properties with a corresponding
       // custom theme value...
       if (Object.keys(CUSTOM_THEME_CSS_PROPS).includes(currPropKey)) {
-        // ... pass the themed value to the filtered props
-        // IF the prop's value is one of the subkeys,
-        // otherwise, pass the prop through to the filtered props
-        const themePropKey: keyof Theme | undefined =
-          CUSTOM_THEME_CSS_PROPS[currPropKey as keyof AllowedCssProps];
-        if (
-          themePropKey &&
-          Object.keys(theme[themePropKey]).includes(props[currPropKey])
-        ) {
-          (nextPropObj as Record<string, unknown>)[currPropKey] = [
-            themePropKey,
-          ][props[currPropKey]];
-        } else {
+        // ... get the corresponding theme key...
+        const themePropKey =
+          CUSTOM_THEME_CSS_PROPS[currPropKey as keyof AllowedCssProps]!;
+        // ... and if the value of the prop exists in the theme for that key...
+        const propValue = props[currPropKey];
+        if (Object.keys(theme[themePropKey]).includes(propValue)) {
+          // ... set the value of the prop to the corresponding theme value
           (nextPropObj as Record<string, unknown>)[currPropKey] =
-            props[currPropKey];
+            theme[themePropKey][propValue as keyof Theme[keyof Theme]];
+        } else {
+          // ...otherwise, pass it through to the filtered props
+          (nextPropObj as Record<string, unknown>)[currPropKey] = propValue;
         }
       } else {
         // ...pass it through to the filtered props
