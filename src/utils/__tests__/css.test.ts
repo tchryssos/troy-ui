@@ -34,5 +34,22 @@ describe('CSS Utilities', () => {
         backgroundColor: themes.light.colors.danger,
       });
     });
+    it('should pass through props that have a corresponding custom theme value, but aren\'t being set to a specific theme value (ex. setting color to "red" rather than "danger")', () => {
+      const props = {
+        marginTop: '10px',
+        backgroundColor: 'red',
+        variant: 'primary',
+      };
+
+      const filtered = filterCssProps(
+        props,
+        [...ALLOWED_COMMON_CSS_KEYS],
+        themes.light
+      );
+      expect(filtered).toEqual({
+        marginTop: '10px',
+        backgroundColor: 'red',
+      });
+    });
   });
 });
