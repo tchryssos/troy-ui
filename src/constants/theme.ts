@@ -74,16 +74,14 @@ const baseTheme = {
     96: pxToRem(96),
     128: pxToRem(128),
   },
-  border: {
-    width: {
-      1: pxToRem(1),
-      3: pxToRem(3),
-    },
-    radius: {
-      2: pxToRem(2),
-      4: pxToRem(4),
-      round: '50%',
-    },
+  borderWidth: {
+    1: pxToRem(1),
+    3: pxToRem(3),
+  },
+  borderRadius: {
+    2: pxToRem(2),
+    4: pxToRem(4),
+    round: '50%',
   },
   fontSize: {
     14: pxToRem(14),
