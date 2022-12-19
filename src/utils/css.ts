@@ -109,7 +109,9 @@ type AllowedCssProps = AllowedCommonCssProps &
   AllowedFlexboxCssProps &
   AllowedGridBoxCssProps;
 
-const CUSTOM_THEME_CSS_PROPS: Record<keyof AllowedCssProps, keyof Theme> = {
+const CUSTOM_THEME_CSS_PROPS: {
+  [k in keyof AllowedCssProps]: keyof Theme;
+} = {
   backgroundColor: 'colors',
   color: 'colors',
   borderColor: 'colors',
@@ -150,9 +152,12 @@ export const filterCssProps = (
         // ... pass the themed value to the filtered props
         // IF the prop's value is one of the subkeys,
         // otherwise, pass the prop through to the filtered props
-        const themePropKey: keyof Theme =
+        const themePropKey: keyof Theme | undefined =
           CUSTOM_THEME_CSS_PROPS[currPropKey as keyof AllowedCssProps];
-        if (Object.keys(theme[themePropKey]).includes(props[currPropKey])) {
+        if (
+          themePropKey &&
+          Object.keys(theme[themePropKey]).includes(props[currPropKey])
+        ) {
           (nextPropObj as Record<string, unknown>)[currPropKey] = [
             themePropKey,
           ][props[currPropKey]];
