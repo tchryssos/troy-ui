@@ -50,9 +50,10 @@ export const Text: React.FC<TextProps> = styled('span')<TextProps>(
     ...((variant === 'title-xl' || as === 'h1') && {
       fontSize: theme.fontSize[56],
     }),
-    ...filterCssProps(rest, [
-      ...ALLOWED_COMMON_CSS_KEYS,
-      ...ALLOWED_TEXT_CSS_KEYS,
-    ]),
+    ...filterCssProps(
+      rest,
+      [...ALLOWED_COMMON_CSS_KEYS, ...ALLOWED_TEXT_CSS_KEYS],
+      theme
+    ),
   })
 );

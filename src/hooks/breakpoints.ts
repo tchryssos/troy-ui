@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { BreakpointSize } from '~/typings/theme';
+import { BreakpointSize } from '~/typings/breakpoints';
 
 import { BreakpointsContext } from '../components/providers/BreakpointsProvider';
 

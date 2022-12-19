@@ -17,13 +17,19 @@ type BoxProps = AllowedCommonCssProps &
     className?: string;
   };
 
-export const Box: React.FC<BoxProps> = styled('div')<BoxProps>((props) => ({
-  ...filterCssProps(props, [
-    ...ALLOWED_COMMON_CSS_KEYS,
-    ...(props.display === 'flex' || props.display === 'inline-flex'
-      ? ALLOWED_FLEXBOX_CSS_KEYS
-      : props.display === 'grid' || props.display === 'inline-grid'
-      ? ALLOWED_GRIDBOX_CSS_KEYS
-      : []),
-  ]),
-}));
+export const Box: React.FC<BoxProps> = styled('div')<BoxProps>(
+  ({ theme, ...rest }) => ({
+    ...filterCssProps(
+      rest,
+      [
+        ...ALLOWED_COMMON_CSS_KEYS,
+        ...(rest.display === 'flex' || rest.display === 'inline-flex'
+          ? ALLOWED_FLEXBOX_CSS_KEYS
+          : rest.display === 'grid' || rest.display === 'inline-grid'
+          ? ALLOWED_GRIDBOX_CSS_KEYS
+          : []),
+      ],
+      theme
+    ),
+  })
+);

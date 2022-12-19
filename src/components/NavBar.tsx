@@ -28,7 +28,7 @@ const NavBarWrapper = styled(FlexBox)<{ withBorder: boolean }>(
     width: '100%',
     padding: theme.spacing[16],
     borderBottom: withBorder
-      ? `${theme.border.borderWidth[1]} solid ${theme.colors.accentHeavy}`
+      ? `${theme.borderWidth[1]} solid ${theme.colors.accentHeavy}`
       : '',
     [theme.breakpoints.sm]: {
       padding: `${theme.spacing[16]} ${theme.spacing[32]}`,

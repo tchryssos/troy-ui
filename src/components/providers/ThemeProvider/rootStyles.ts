@@ -50,7 +50,7 @@ export const createGlobalStyles = (theme: Theme) => css`
     background-color: ${theme.colors.accentLight};
     color: ${theme.colors.text};
     border-radius: ${pxToRem(4)};
-    border-width: ${theme.border.width[1]};
+    border-width: ${theme.borderWidth[1]};
     :disabled {
       background-color: ${theme.colors.smudge};
     }
