@@ -1,12 +1,13 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
+import { Box } from '~/components/box/Box';
 import { GridBox as GridBoxComponent } from '~/components/box/GridBox';
 
 import { COMMON_ARG_TYPES } from './argTypes';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Box/GridBox',
+  title: 'Layout/GridBox',
   component: GridBoxComponent,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
@@ -14,30 +15,25 @@ export default {
   },
 } as ComponentMeta<typeof GridBoxComponent>;
 
+const boxProps = {
+  padding: 16,
+  borderColor: 'text',
+  borderStyle: 'solid',
+  borderWidth: 1,
+};
+
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof GridBoxComponent> = (args) => (
-  <GridBoxComponent {...args} />
+  <GridBoxComponent {...args}>
+    <Box {...boxProps}>Squirtle</Box>
+    <Box {...boxProps}>Charmander</Box>
+    <Box {...boxProps}>Bulbasaur</Box>
+    <Box {...boxProps}>Cyndaquil</Box>
+    <Box {...boxProps}>Totodile</Box>
+    <Box {...boxProps}>Chikorita</Box>
+  </GridBoxComponent>
 );
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const GridBox = Template.bind({});
-GridBox.args = {
-  children: (
-    <>
-      <div style={{ border: '1px solid black', padding: '1rem' }}>Squirtle</div>
-      <div style={{ border: '1px solid black', padding: '1rem' }}>
-        Charmander
-      </div>
-      <div style={{ border: '1px solid black', padding: '1rem' }}>
-        Bulbasaur
-      </div>
-      <div style={{ border: '1px solid black', padding: '1rem' }}>
-        Cyndaquil
-      </div>
-      <div style={{ border: '1px solid black', padding: '1rem' }}>Totodile</div>
-      <div style={{ border: '1px solid black', padding: '1rem' }}>
-        Chikorita
-      </div>
-    </>
-  ),
-};
+GridBox.args = {};

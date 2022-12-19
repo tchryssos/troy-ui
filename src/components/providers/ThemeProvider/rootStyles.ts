@@ -25,7 +25,7 @@ export const createGlobalStyles = (theme: Theme) => css`
     ${baseStyle};
     position: relative;
     box-sizing: border-box;
-    font-family: ${theme.fontFamily.normal};
+    font-family: ${theme.fontFamily.base};
     color: ${theme.colors.text};
   }
   #app,
@@ -46,7 +46,7 @@ export const createGlobalStyles = (theme: Theme) => css`
   input,
   select,
   textarea {
-    font-family: ${theme.fontFamily.normal};
+    font-family: ${theme.fontFamily.base};
     background-color: ${theme.colors.accentLight};
     color: ${theme.colors.text};
     border-radius: ${pxToRem(4)};

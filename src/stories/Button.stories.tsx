@@ -6,7 +6,7 @@ import { COMMON_ARG_TYPES } from './argTypes';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Button/Button',
+  title: 'Buttons/Button',
   component: ButtonComponent,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
@@ -16,7 +16,14 @@ export default {
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template: ComponentStory<typeof ButtonComponent> = (args) => (
-  <ButtonComponent {...args} />
+  <ButtonComponent
+    {...args}
+    onClick={() =>
+      alert(
+        '\u2669\u2669HE CAME FROM SOMEWHERE BACK IN HER LONG AGO\u2669\u2669'
+      )
+    }
+  />
 );
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args

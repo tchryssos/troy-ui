@@ -6,7 +6,7 @@ import { COMMON_ARG_TYPES } from './argTypes';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
-  title: 'Box/FlexBox',
+  title: 'Layout/FlexBox',
   component: FlexBoxComponent,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
