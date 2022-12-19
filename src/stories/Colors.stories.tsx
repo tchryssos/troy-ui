@@ -35,7 +35,7 @@ export const Colors = () => {
             <Text fontWeight={theme.fontWeight.bold}>Title</Text>
           </th>
           <th>
-            <Text fontWeight={theme.fontWeight.bold}>Value</Text>
+            <Text fontWeight={theme.fontWeight.bold}>Path</Text>
           </th>
           <th>
             <Text fontWeight={theme.fontWeight.bold}>Swatch</Text>
@@ -44,20 +44,31 @@ export const Colors = () => {
         {Object.keys(theme.colors).map((color) => (
           <tr key={color}>
             <td>
-              <Text>{color}</Text>
+              <Text fontFamily="monospace">{color}</Text>
             </td>
             <td>
-              <Text>{theme.colors[color as keyof ColorModeColors]}</Text>
+              <Text fontFamily="monospace">theme.colors.{color}</Text>
             </td>
             <td>
-              <Box
-                backgroundColor={theme.colors[color as keyof ColorModeColors]}
-                borderColor={theme.colors.text}
-                borderStyle="solid"
-                borderWidth="1px"
-                height={pxToRem(100)}
-                width={pxToRem(150)}
-              />
+              <FlexBox
+                flexDirection="column"
+                gap={theme.spacing[4]}
+                marginBottom={theme.spacing[16]}
+              >
+                <Box
+                  backgroundColor={theme.colors[color as keyof ColorModeColors]}
+                  borderColor={
+                    color === 'background' ? theme.colors.text : 'transparent'
+                  }
+                  borderStyle="dashed"
+                  borderWidth="1px"
+                  height={pxToRem(100)}
+                  width={pxToRem(150)}
+                />
+                <Text fontFamily="monospace">
+                  {theme.colors[color as keyof ColorModeColors]}
+                </Text>
+              </FlexBox>
             </td>
           </tr>
         ))}
