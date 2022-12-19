@@ -99,6 +99,7 @@ const baseTheme = {
   fontFamily: {
     normal:
       "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,'Helvetica Neue', sans-serif;",
+    monospace: "Menlo, Monaco, Consolas, 'Courier New', monospace",
   },
   lineHeight: {
     normal: 1.2,
