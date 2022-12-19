@@ -57,10 +57,8 @@ export const Colors = () => {
               >
                 <Box
                   backgroundColor={theme.colors[color as keyof ColorModeColors]}
-                  borderColor={
-                    color === 'background' ? theme.colors.text : 'transparent'
-                  }
-                  borderStyle="dashed"
+                  borderColor={theme.colors.text}
+                  borderStyle="solid"
                   borderWidth="1px"
                   height={pxToRem(100)}
                   width={pxToRem(150)}

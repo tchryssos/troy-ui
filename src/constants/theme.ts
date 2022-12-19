@@ -27,7 +27,9 @@ const breakpoints: BreakpointObject<`@media only screen and (${string}-width: ${
 const lightModeColors: ColorModeColors = {
   background: '#fafafa',
   text: '#17242b',
+  textAccent: '#4d4d4c',
   success: '#00784e',
+  warning: '#c29e3b',
   danger: '#db0033',
   accentHeavy: '#adadad',
   accentLight: '#e8e8e8',
@@ -37,7 +39,9 @@ const lightModeColors: ColorModeColors = {
 const darkModeColors: ColorModeColors = {
   background: '#1d1f21',
   text: '#c5c8c6',
+  textAccent: '#969896',
   success: '#6fbd68',
+  warning: '#e9c47e',
   danger: '#9a4d4d',
   accentHeavy: '#2a3c3e',
   accentLight: '#505253',
