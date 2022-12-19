@@ -80,10 +80,3 @@ AsHTag.args = {
     "I've seen your picture / Your name in lights above it / This is your big debut / It's like a dream come true / So won't you smile for the camera / I know they're gonna love it, Peg",
   as: 'h1',
 };
-
-export const Monospace = Template.bind({});
-Monospace.args = {
-  children:
-    "I've seen your picture / Your name in lights above it / This is your big debut / It's like a dream come true / So won't you smile for the camera / I know they're gonna love it, Peg",
-  fontFamily: 'monospace',
-};
