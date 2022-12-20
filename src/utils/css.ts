@@ -155,31 +155,46 @@ const CUSTOM_THEME_CSS_PROPS: {
   fontSize: 'fontSize',
 };
 
+const handleCustomThemeCssProps = (
+  currPropKey: keyof AllowedCssProps,
+  theme: Theme,
+  propValue: string | number
+) => {
+  // ... get the corresponding theme key...
+  const propCorrespondingThemeKey = CUSTOM_THEME_CSS_PROPS[currPropKey]!;
+  // ... and if the value of the prop exists in the theme for that key...
+  const propValueIsThemeSubkey = Object.keys(
+    theme[propCorrespondingThemeKey]
+  ).includes(propValue as string);
+  if (propValueIsThemeSubkey) {
+    // ... set the value of the prop to the corresponding theme value
+    return theme[propCorrespondingThemeKey][
+      propValue as keyof Theme[keyof Theme]
+    ];
+  }
+  // ...otherwise, pass it through to the filtered props
+  return propValue;
+};
+
 export const filterCssProps = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props: Record<string, any>,
   theme: Theme
 ) =>
   Object.keys(props).reduce((propObj, currPropKey) => {
-    const nextPropObj = { ...propObj };
+    const nextPropObj = { ...propObj } as Record<string, unknown>;
     // If the prop is one of the css props that uses the custom theme...
-    if (Object.keys(CUSTOM_THEME_CSS_PROPS).includes(currPropKey)) {
-      // ... get the corresponding theme key...
-      const themePropKey =
-        CUSTOM_THEME_CSS_PROPS[currPropKey as keyof AllowedCssProps]!;
-      // ... and if the value of the prop exists in the theme for that key...
-      const propValue = props[currPropKey];
-      if (Object.keys(theme[themePropKey]).includes(propValue)) {
-        // ... set the value of the prop to the corresponding theme value
-        (nextPropObj as Record<string, unknown>)[currPropKey] =
-          theme[themePropKey][propValue as keyof Theme[keyof Theme]];
-      } else {
-        // ...otherwise, pass it through to the filtered props
-        (nextPropObj as Record<string, unknown>)[currPropKey] = propValue;
-      }
+    const usesCustomTheme = Object.keys(CUSTOM_THEME_CSS_PROPS).includes(
+      currPropKey
+    );
+    if (usesCustomTheme) {
+      nextPropObj[currPropKey] = handleCustomThemeCssProps(
+        currPropKey as keyof AllowedCssProps,
+        theme,
+        props[currPropKey]
+      );
     } else {
-      (nextPropObj as Record<string, unknown>)[currPropKey] =
-        props[currPropKey];
+      nextPropObj[currPropKey] = props[currPropKey];
     }
     return nextPropObj;
   }, {} as Partial<CSS.Properties>);
