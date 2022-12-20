@@ -19,6 +19,7 @@ const Template: ComponentStory<typeof ButtonComponent> = (args) => (
   <ButtonComponent
     {...args}
     onClick={() =>
+      // eslint-disable-next-line no-alert
       alert(
         '\u2669\u2669HE CAME FROM SOMEWHERE BACK IN HER LONG AGO\u2669\u2669'
       )

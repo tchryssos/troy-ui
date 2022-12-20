@@ -2,6 +2,7 @@
 import * as CSS from 'csstype';
 
 import { Theme } from '~/constants/theme';
+import { Spacing } from '~/typings/theme';
 
 export const ALLOWED_COMMON_CSS_KEYS = [
   'alignSelf',
@@ -63,6 +64,18 @@ export const ALLOWED_COMMON_CSS_KEYS = [
   'width',
 ] as const;
 
+const CUSTOM_CSS_SPACING_KEYS = [
+  'marginX',
+  'marginY',
+  'paddingX',
+  'paddingY',
+] as const;
+type AllowedCustomCssSpacingProps = {
+  [k in typeof CUSTOM_CSS_SPACING_KEYS[number]]?:
+    | Spacing
+    | CSS.Properties['margin'];
+};
+
 export type AllowedCommonCssProps = {
   [k in typeof ALLOWED_COMMON_CSS_KEYS[number]]?: CSS.Properties[k];
 };
@@ -104,10 +117,13 @@ export type AllowedGridBoxCssProps = {
   [k in typeof ALLOWED_GRIDBOX_CSS_KEYS[number]]?: CSS.Properties[k];
 };
 
+type AllowedCustomCssProps = AllowedCustomCssSpacingProps;
+
 type AllowedCssProps = AllowedCommonCssProps &
   AllowedTextCssProps &
   AllowedFlexboxCssProps &
-  AllowedGridBoxCssProps;
+  AllowedGridBoxCssProps &
+  AllowedCustomCssProps;
 
 const CUSTOM_THEME_CSS_PROPS: {
   [k in keyof AllowedCssProps]: keyof Theme;
@@ -120,11 +136,15 @@ const CUSTOM_THEME_CSS_PROPS: {
   marginLeft: 'spacing',
   marginRight: 'spacing',
   marginTop: 'spacing',
+  marginX: 'spacing',
+  marginY: 'spacing',
   padding: 'spacing',
   paddingBottom: 'spacing',
   paddingLeft: 'spacing',
   paddingRight: 'spacing',
   paddingTop: 'spacing',
+  paddingX: 'spacing',
+  paddingY: 'spacing',
   gap: 'spacing',
   rowGap: 'spacing',
   columnGap: 'spacing',
@@ -138,35 +158,28 @@ const CUSTOM_THEME_CSS_PROPS: {
 export const filterCssProps = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props: Record<string, any>,
-  allowedPropKeys: (keyof CSS.Properties)[],
   theme: Theme
 ) =>
   Object.keys(props).reduce((propObj, currPropKey) => {
     const nextPropObj = { ...propObj };
-    // If the current prop key exists in the list of allowed
-    // css properties...
-    if ((allowedPropKeys as string[]).includes(currPropKey)) {
-      // ... AND is one of the properties with a corresponding
-      // custom theme value...
-      if (Object.keys(CUSTOM_THEME_CSS_PROPS).includes(currPropKey)) {
-        // ... get the corresponding theme key...
-        const themePropKey =
-          CUSTOM_THEME_CSS_PROPS[currPropKey as keyof AllowedCssProps]!;
-        // ... and if the value of the prop exists in the theme for that key...
-        const propValue = props[currPropKey];
-        if (Object.keys(theme[themePropKey]).includes(propValue)) {
-          // ... set the value of the prop to the corresponding theme value
-          (nextPropObj as Record<string, unknown>)[currPropKey] =
-            theme[themePropKey][propValue as keyof Theme[keyof Theme]];
-        } else {
-          // ...otherwise, pass it through to the filtered props
-          (nextPropObj as Record<string, unknown>)[currPropKey] = propValue;
-        }
-      } else {
-        // ...pass it through to the filtered props
+    // If the prop is one of the css props that uses the custom theme...
+    if (Object.keys(CUSTOM_THEME_CSS_PROPS).includes(currPropKey)) {
+      // ... get the corresponding theme key...
+      const themePropKey =
+        CUSTOM_THEME_CSS_PROPS[currPropKey as keyof AllowedCssProps]!;
+      // ... and if the value of the prop exists in the theme for that key...
+      const propValue = props[currPropKey];
+      if (Object.keys(theme[themePropKey]).includes(propValue)) {
+        // ... set the value of the prop to the corresponding theme value
         (nextPropObj as Record<string, unknown>)[currPropKey] =
-          props[currPropKey];
+          theme[themePropKey][propValue as keyof Theme[keyof Theme]];
+      } else {
+        // ...otherwise, pass it through to the filtered props
+        (nextPropObj as Record<string, unknown>)[currPropKey] = propValue;
       }
+    } else {
+      (nextPropObj as Record<string, unknown>)[currPropKey] =
+        props[currPropKey];
     }
     return nextPropObj;
   }, {} as Partial<CSS.Properties>);

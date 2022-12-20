@@ -1,11 +1,7 @@
 import styled from '@emotion/styled';
 import { FocusEventHandler, MouseEventHandler } from 'react';
 
-import {
-  ALLOWED_COMMON_CSS_KEYS,
-  AllowedCommonCssProps,
-  filterCssProps,
-} from '~/utils/css';
+import { AllowedCommonCssProps, filterCssProps } from '~/utils/css';
 import { pxToRem } from '~/utils/pxToRem';
 
 import { FlexBox } from './box/FlexBox';
@@ -51,7 +47,7 @@ const StyledButton = styled.button<StyledProps>(
       border: 'none',
       filter: 'brightness(1.0)',
     },
-    ...filterCssProps(rest, [...ALLOWED_COMMON_CSS_KEYS], theme),
+    ...filterCssProps(rest, theme),
   })
 );
 
