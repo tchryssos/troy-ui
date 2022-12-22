@@ -155,12 +155,18 @@ const CUSTOM_THEME_CSS_PROPS: {
   fontSize: 'fontSize',
 };
 
-const handleCustomThemeCssProps = (
-  currPropKey: keyof AllowedCssProps,
-  theme: Theme,
-  propValue: string | number
-) => {
-  // ... get the corresponding theme key...
+type CustomCssArgs = {
+  currPropKey: keyof AllowedCssProps;
+  theme: Theme;
+  propValue: string | number;
+};
+
+const handleThemedCssProps = ({
+  currPropKey,
+  theme,
+  propValue,
+}: CustomCssArgs) => {
+  // Get the corresponding theme key...
   const propCorrespondingThemeKey = CUSTOM_THEME_CSS_PROPS[currPropKey]!;
   // ... and if the value of the prop exists in the theme for that key...
   const propValueIsThemeSubkey = Object.keys(
@@ -176,6 +182,12 @@ const handleCustomThemeCssProps = (
   return propValue;
 };
 
+const handleCustomCssProps = ({
+  currPropKey,
+  theme,
+  propValue,
+}: CustomCssArgs) => {};
+
 export const filterCssProps = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   props: Record<string, any>,
@@ -188,11 +200,11 @@ export const filterCssProps = (
       currPropKey
     );
     if (usesCustomTheme) {
-      nextPropObj[currPropKey] = handleCustomThemeCssProps(
-        currPropKey as keyof AllowedCssProps,
+      nextPropObj[currPropKey] = handleThemedCssProps({
+        currPropKey: currPropKey as keyof AllowedCssProps,
         theme,
-        props[currPropKey]
-      );
+        propValue: props[currPropKey],
+      });
     } else {
       nextPropObj[currPropKey] = props[currPropKey];
     }
