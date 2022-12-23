@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 import {
-  ALLOWED_TEXT_CSS_KEYS,
   AllowedCommonCssProps,
   AllowedTextCssProps,
   filterCssProps,
@@ -49,6 +48,6 @@ export const Text: React.FC<TextProps> = styled('span')<TextProps>(
     ...((variant === 'title-xl' || as === 'h1') && {
       fontSize: theme.fontSize[56],
     }),
-    ...filterCssProps(rest, theme, [...ALLOWED_TEXT_CSS_KEYS]),
+    ...filterCssProps(rest, theme),
   })
 );

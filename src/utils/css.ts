@@ -125,6 +125,13 @@ type AllowedCssProps = AllowedCommonCssProps &
   AllowedGridBoxCssProps &
   AllowedCustomCssProps;
 
+const ALL_ALLOWED_CSS_PROPS = [
+  ...ALLOWED_COMMON_CSS_KEYS,
+  ...ALLOWED_FLEXBOX_CSS_KEYS,
+  ...ALLOWED_GRIDBOX_CSS_KEYS,
+  ...ALLOWED_TEXT_CSS_KEYS,
+];
+
 const CUSTOM_THEME_CSS_PROPS: {
   [k in keyof AllowedCssProps]: keyof Theme;
 } = {
@@ -182,11 +189,11 @@ const handleThemedCssProps = ({
   return propValue;
 };
 
-const handleCustomCssProps = ({
-  currPropKey,
-  theme,
-  propValue,
-}: CustomCssArgs) => {};
+// const handleCustomCssProps = ({
+//   currPropKey,
+//   theme,
+//   propValue,
+// }: CustomCssArgs) => {};
 
 export const filterCssProps = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -205,8 +212,16 @@ export const filterCssProps = (
         theme,
         propValue: props[currPropKey],
       });
-    } else {
+    } else if ((ALL_ALLOWED_CSS_PROPS as string[]).includes(currPropKey)) {
       nextPropObj[currPropKey] = props[currPropKey];
     }
     return nextPropObj;
-  }, {} as Partial<CSS.Properties>);
+  }, {} as Partial<CSS.Properties & AllowedCustomCssSpacingProps>);
+
+export const makeCssPropStyles = (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  props: { theme: Theme } & Record<string, any>
+) => {
+  const { theme, ...rest } = props;
+  return filterCssProps(rest, theme);
+};
