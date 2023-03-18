@@ -57,7 +57,7 @@ const getFontSize = (theme: Theme, variantOrAs: VariantOrAs) => {
   return fontSize || theme.fontSize[16];
 };
 
-export const Text = styled('span')<TextProps>(
+export const Typography = styled('span')<TextProps>(
   ({ as, variant, theme, ...rest }) => {
     const fontSize = getFontSize(theme, variant || as || 'body');
 

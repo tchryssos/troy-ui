@@ -13,11 +13,12 @@
     "test": "jest"
   },
   "dependencies": {
-    "@mui/base": "^5.0.0-alpha.121"
+    "dompurify": "^3.0.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@mui/base": "^5.0.0-alpha.121",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -26,6 +27,7 @@
     "@emotion/eslint-plugin": "^11.7.0",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@mui/base": "^5.0.0-alpha.121",
     "@storybook/addon-actions": "^6.5.16",
     "@storybook/addon-essentials": "^6.5.16",
     "@storybook/addon-interactions": "^6.5.16",
@@ -34,6 +36,7 @@
     "@storybook/testing-library": "^0.0.13",
     "@testing-library/react": "^13.4.0",
     "@tsconfig/recommended": "^1.0.2",
+    "@types/dompurify": "^3.0.0",
     "@types/jest": "^29.2.4",
     "@types/lodash.merge": "^4.6.6",
     "@types/node": "^17.0.21",
