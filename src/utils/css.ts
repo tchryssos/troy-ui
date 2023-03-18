@@ -1,169 +1,16 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import * as CSS from 'csstype';
+import { CSSObject } from '@emotion/styled';
 
+import {
+  ALL_ALLOWED_CSS_PROPS,
+  AllowedCustomCssProps,
+  AllowedCustomCssSpacingProps,
+  CUSTOM_THEME_CSS_PROPS,
+} from '~/constants/css';
 import { Theme } from '~/constants/theme';
-import { Spacing } from '~/typings/theme';
-
-export const ALLOWED_COMMON_CSS_KEYS = [
-  'alignSelf',
-  'background',
-  'backgroundColor',
-  'border',
-  'borderBottom',
-  'borderBottomColor',
-  'borderBottomStyle',
-  'borderBottomWidth',
-  'borderColor',
-  'borderLeft',
-  'borderLeftColor',
-  'borderLeftStyle',
-  'borderLeftWidth',
-  'borderRight',
-  'borderRightColor',
-  'borderRightStyle',
-  'borderRightWidth',
-  'borderStyle',
-  'borderTop',
-  'borderTopColor',
-  'borderTopStyle',
-  'borderTopWidth',
-  'borderWidth',
-  'bottom',
-  'boxShadow',
-  'color',
-  'display',
-  'fontFamily',
-  'fontStyle',
-  'fontSize',
-  'fontWeight',
-  'gridColumnEnd',
-  'gridColumnStart',
-  'gridRowEnd',
-  'gridRowStart',
-  'height',
-  'justifySelf',
-  'left',
-  'lineHeight',
-  'margin',
-  'marginBottom',
-  'marginLeft',
-  'marginRight',
-  'marginTop',
-  'maxHeight',
-  'maxWidth',
-  'overflow',
-  'padding',
-  'paddingBottom',
-  'paddingLeft',
-  'paddingRight',
-  'paddingTop',
-  'position',
-  'right',
-  'textOverflow',
-  'top',
-  'width',
-] as const;
-
-const CUSTOM_CSS_SPACING_KEYS = [
-  'marginX',
-  'marginY',
-  'paddingX',
-  'paddingY',
-] as const;
-type AllowedCustomCssSpacingProps = {
-  [k in typeof CUSTOM_CSS_SPACING_KEYS[number]]?:
-    | Spacing
-    | CSS.Properties['margin'];
-};
-
-export type AllowedCommonCssProps = {
-  [k in typeof ALLOWED_COMMON_CSS_KEYS[number]]?: CSS.Properties[k];
-};
-
-export const ALLOWED_TEXT_CSS_KEYS = ['lineHeight', 'lineClamp'] as const;
-
-export type AllowedTextCssProps = {
-  [k in typeof ALLOWED_TEXT_CSS_KEYS[number]]?: CSS.Properties[k];
-};
-
-export const ALLOWED_FLEXBOX_CSS_KEYS = [
-  'gap',
-  'justifyContent',
-  'alignItems',
-  'flex',
-  'flexDirection',
-  'flexWrap',
-] as const;
-
-export type AllowedFlexboxCssProps = {
-  [k in typeof ALLOWED_FLEXBOX_CSS_KEYS[number]]?: CSS.Properties[k];
-};
-
-export const ALLOWED_GRIDBOX_CSS_KEYS = [
-  'gap',
-  'rowGap',
-  'columnGap',
-  'gridTemplateColumns',
-  'gridTemplateRows',
-  'justifyItems',
-  'alignItems',
-  'placeItems',
-  'justifyContent',
-  'alignContent',
-  'grid',
-] as const;
-
-export type AllowedGridBoxCssProps = {
-  [k in typeof ALLOWED_GRIDBOX_CSS_KEYS[number]]?: CSS.Properties[k];
-};
-
-type AllowedCustomCssProps = AllowedCustomCssSpacingProps;
-
-type AllowedCssProps = AllowedCommonCssProps &
-  AllowedTextCssProps &
-  AllowedFlexboxCssProps &
-  AllowedGridBoxCssProps &
-  AllowedCustomCssProps;
-
-const ALL_ALLOWED_CSS_PROPS = [
-  ...ALLOWED_COMMON_CSS_KEYS,
-  ...ALLOWED_FLEXBOX_CSS_KEYS,
-  ...ALLOWED_GRIDBOX_CSS_KEYS,
-  ...ALLOWED_TEXT_CSS_KEYS,
-];
-
-const CUSTOM_THEME_CSS_PROPS: {
-  [k in keyof AllowedCssProps]: keyof Theme;
-} = {
-  backgroundColor: 'colors',
-  color: 'colors',
-  borderColor: 'colors',
-  margin: 'spacing',
-  marginBottom: 'spacing',
-  marginLeft: 'spacing',
-  marginRight: 'spacing',
-  marginTop: 'spacing',
-  marginX: 'spacing',
-  marginY: 'spacing',
-  padding: 'spacing',
-  paddingBottom: 'spacing',
-  paddingLeft: 'spacing',
-  paddingRight: 'spacing',
-  paddingTop: 'spacing',
-  paddingX: 'spacing',
-  paddingY: 'spacing',
-  gap: 'spacing',
-  rowGap: 'spacing',
-  columnGap: 'spacing',
-  fontWeight: 'fontWeight',
-  fontFamily: 'fontFamily',
-  borderWidth: 'borderWidth',
-  borderBottomWidth: 'borderRadius',
-  fontSize: 'fontSize',
-};
 
 type CustomCssArgs = {
-  currPropKey: keyof AllowedCssProps;
+  currPropKey: keyof typeof CUSTOM_THEME_CSS_PROPS;
   theme: Theme;
   propValue: string | number;
 };
@@ -189,34 +36,125 @@ const handleThemedCssProps = ({
   return propValue;
 };
 
-// const handleCustomCssProps = ({
-//   currPropKey,
-//   theme,
-//   propValue,
-// }: CustomCssArgs) => {};
+const customCssMapping: Record<
+  keyof AllowedCustomCssProps,
+  (theme: Theme, value: string | number) => CSSObject
+> = {
+  paddingX: (theme, value) => ({
+    paddingLeft: handleThemedCssProps({
+      currPropKey: 'paddingLeft',
+      theme,
+      propValue: value,
+    }),
+    paddingRight: handleThemedCssProps({
+      currPropKey: 'paddingRight',
+      theme,
+      propValue: value,
+    }),
+  }),
+  marginX: (theme, value) => ({
+    marginLeft: handleThemedCssProps({
+      currPropKey: 'marginLeft',
+      theme,
+      propValue: value,
+    }),
+    marginRight: handleThemedCssProps({
+      currPropKey: 'marginRight',
+      theme,
+      propValue: value,
+    }),
+  }),
+  paddingY: (theme, value) => ({
+    paddingTop: handleThemedCssProps({
+      currPropKey: 'paddingTop',
+      theme,
+      propValue: value,
+    }),
+    paddingBottom: handleThemedCssProps({
+      currPropKey: 'paddingBottom',
+      theme,
+      propValue: value,
+    }),
+  }),
+  marginY: (theme, value) => ({
+    marginTop: handleThemedCssProps({
+      currPropKey: 'marginTop',
+      theme,
+      propValue: value,
+    }),
+    marginBottom: handleThemedCssProps({
+      currPropKey: 'marginBottom',
+      theme,
+      propValue: value,
+    }),
+  }),
+};
 
-export const filterCssProps = (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  props: Record<string, any>,
-  theme: Theme
-) =>
-  Object.keys(props).reduce((propObj, currPropKey) => {
-    const nextPropObj = { ...propObj } as Record<string, unknown>;
-    // If the prop is one of the css props that uses the custom theme...
-    const usesCustomTheme = Object.keys(CUSTOM_THEME_CSS_PROPS).includes(
-      currPropKey
-    );
-    if (usesCustomTheme) {
-      nextPropObj[currPropKey] = handleThemedCssProps({
-        currPropKey: currPropKey as keyof AllowedCssProps,
+type HandleCustomCssArgs = Omit<CustomCssArgs, 'currPropKey'> & {
+  currPropKey: keyof AllowedCustomCssProps;
+};
+
+const handleCustomCssProps = ({
+  currPropKey,
+  theme,
+  propValue,
+}: HandleCustomCssArgs): CSSObject => {
+  const mappingFn = customCssMapping[currPropKey];
+  if (mappingFn) {
+    return mappingFn(theme, propValue);
+  }
+  // pass through to filtered props if no mapping function found
+  return {
+    [currPropKey]: propValue,
+  };
+};
+
+type CssPropObj = Partial<CSSObject & AllowedCustomCssSpacingProps>;
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const filterCssProps = (props: Record<string, any>, theme: Theme) =>
+  Object.keys(props).reduce((propObj: CssPropObj, currPropKey) => {
+    // Create a copy of the propObj so we don't mutate it
+    let nextPropObj = { ...propObj } as CssPropObj;
+
+    // Check if the current prop is a custom CSS prop
+    // for ex. paddingX, paddingY, etc.
+    const usesCustomCss = Object.keys(customCssMapping).includes(currPropKey);
+
+    if (usesCustomCss) {
+      // If it is, handle it using a helper function
+      const customProps = handleCustomCssProps({
+        currPropKey: currPropKey as keyof AllowedCustomCssProps,
         theme,
         propValue: props[currPropKey],
       });
-    } else if ((ALL_ALLOWED_CSS_PROPS as string[]).includes(currPropKey)) {
-      nextPropObj[currPropKey] = props[currPropKey];
+      nextPropObj = { ...nextPropObj, ...customProps };
+    } else {
+      // Check if it is a custom theme prop
+      // aka any prop for which we expect to match a defined theme value
+      const usesCustomTheme = Object.keys(CUSTOM_THEME_CSS_PROPS).includes(
+        currPropKey
+      );
+      if (usesCustomTheme) {
+        // If it is, handle it using a helper function
+        nextPropObj[currPropKey] = handleThemedCssProps({
+          currPropKey: currPropKey as keyof typeof CUSTOM_THEME_CSS_PROPS,
+          theme,
+          propValue: props[currPropKey],
+        });
+      } else if (
+        // If it isn't, check if it is a valid CSS prop
+        ALL_ALLOWED_CSS_PROPS.includes(
+          currPropKey as typeof ALL_ALLOWED_CSS_PROPS[number]
+        )
+      ) {
+        // If it is, add it to the propObj
+        nextPropObj[currPropKey] = props[currPropKey];
+      }
     }
+    // Return the propObj
     return nextPropObj;
-  }, {} as Partial<CSS.Properties & AllowedCustomCssSpacingProps>);
+  }, {} as CssPropObj);
 
 export const makeCssPropStyles = (
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,5 +1,5 @@
 import { BreakpointObject } from '~/typings/breakpoints';
-import { ColorModeColors } from '~/typings/colorMode';
+import { ColorModeColors, ColorRgba } from '~/typings/colorMode';
 import { pxToRem } from '~/utils/pxToRem';
 
 // START - BREAKPOINTS - START
@@ -48,12 +48,24 @@ const darkModeColors: ColorModeColors = {
   smudge: 'rgba(255,255,255,0.1)',
 };
 
+interface SharedFilters {
+  darken: ColorRgba;
+  lighten: ColorRgba;
+}
+
+const sharedFilters: SharedFilters = {
+  darken: 'rgba(0,0,0,0.5)',
+  lighten: 'rgba(255,255,255,0.5)',
+};
+
 const lightModeFilters = {
   brightnessMod: 0.8,
+  ...sharedFilters,
 };
 
 const darkModeFilters = {
   brightnessMod: 1.2,
+  ...sharedFilters,
 };
 // END - COLORS - END
 
