@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Box } from '~/components/box/Box';
+import { Box, BoxProps } from '~/components/box/Box';
 import { GridBox as GridBoxComponent } from '~/components/box/GridBox';
 
 import { COMMON_ARG_TYPES } from './argTypes';
@@ -15,7 +15,7 @@ export default {
   },
 } as ComponentMeta<typeof GridBoxComponent>;
 
-const boxProps = {
+const boxProps: BoxProps = {
   padding: 16,
   borderColor: 'text',
   borderStyle: 'solid',

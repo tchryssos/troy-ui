@@ -3,7 +3,7 @@ import { useContext } from 'react';
 
 import { FlexBox } from '~/components/box/FlexBox';
 import { ThemeContext } from '~/components/providers/ThemeProvider';
-import { Text } from '~/components/Typography';
+import { Typography } from '~/components/Typography';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
@@ -18,22 +18,26 @@ export const FontFamilies = () => {
     <table style={{ width: '100%', textAlign: 'left' }}>
       <tr>
         <th>
-          <Text fontWeight={theme.fontWeight.bold}>Title</Text>
+          <Typography fontWeight={theme.fontWeight.bold}>Title</Typography>
         </th>
         <th>
-          <Text fontWeight={theme.fontWeight.bold}>Path</Text>
+          <Typography fontWeight={theme.fontWeight.bold}>Path</Typography>
         </th>
         <th>
-          <Text fontWeight={theme.fontWeight.bold}>Example Text</Text>
+          <Typography fontWeight={theme.fontWeight.bold}>
+            Example Typography
+          </Typography>
         </th>
       </tr>
       {Object.keys(theme.fontFamily).map((ff) => (
         <tr key={ff}>
           <td style={{ paddingRight: '1rem' }}>
-            <Text fontFamily="monospace">{ff}</Text>
+            <Typography fontFamily="monospace">{ff}</Typography>
           </td>
           <td style={{ paddingRight: '1rem' }}>
-            <Text fontFamily="monospace">theme.fontFamily.{ff}</Text>
+            <Typography fontFamily="monospace">
+              theme.fontFamily.{ff}
+            </Typography>
           </td>
           <td>
             <FlexBox
@@ -41,11 +45,11 @@ export const FontFamilies = () => {
               gap={theme.spacing[4]}
               marginBottom={theme.spacing[16]}
             >
-              <Text fontFamily={ff}>
+              <Typography fontFamily={ff}>
                 Cheap office coffee / Stays pumping through my veins / (Pumping
                 through my veins now) / I work for the man, yeah / But you know
                 I love the chains / (I love the chains)
-              </Text>
+              </Typography>
             </FlexBox>
           </td>
         </tr>

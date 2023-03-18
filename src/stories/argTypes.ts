@@ -1,4 +1,4 @@
-import { ALLOWED_COMMON_CSS_KEYS } from '~/utils/css';
+import { ALLOWED_COMMON_CSS_KEYS } from '~/constants/css';
 
 export const COMMON_ARG_TYPES = {
   ...ALLOWED_COMMON_CSS_KEYS.reduce(

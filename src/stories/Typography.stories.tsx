@@ -1,21 +1,23 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Text } from '~/components/Typography';
+import { Typography } from '~/components/Typography';
 
 import { COMMON_ARG_TYPES } from './argTypes';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {
   title: 'Typography/Text',
-  component: Text,
+  component: Typography,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
   argTypes: {
     ...COMMON_ARG_TYPES,
   },
-} as ComponentMeta<typeof Text>;
+} as ComponentMeta<typeof Typography>;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
-const Template: ComponentStory<typeof Text> = (args) => <Text {...args} />;
+const Template: ComponentStory<typeof Typography> = (args) => (
+  <Typography {...args} />
+);
 
 // More on args: https://storybook.js.org/docs/react/writing-stories/args
 export const SmallBody = Template.bind({});

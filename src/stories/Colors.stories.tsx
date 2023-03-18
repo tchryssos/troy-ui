@@ -3,9 +3,9 @@ import { useContext } from 'react';
 
 import { Box } from '~/components/box/Box';
 import { FlexBox } from '~/components/box/FlexBox';
-import { Button } from '~/components/button/BaseButton';
+import { BaseButton } from '~/components/button/BaseButton';
 import { ThemeContext } from '~/components/providers/ThemeProvider';
-import { Text } from '~/components/Typography';
+import { Typography } from '~/components/Typography';
 import { ColorModeColors } from '~/typings/colorMode';
 import { pxToRem } from '~/utils/pxToRem';
 
@@ -28,26 +28,28 @@ export const Colors = () => {
       padding={theme.spacing[16]}
       width="100%"
     >
-      <Button onClick={onToggle}>Toggle Color Mode</Button>
+      <BaseButton onClick={onToggle}>Toggle Color Mode</BaseButton>
       <table style={{ width: '100%', textAlign: 'left' }}>
         <tr>
           <th>
-            <Text fontWeight={theme.fontWeight.bold}>Title</Text>
+            <Typography fontWeight={theme.fontWeight.bold}>Title</Typography>
           </th>
           <th>
-            <Text fontWeight={theme.fontWeight.bold}>Path</Text>
+            <Typography fontWeight={theme.fontWeight.bold}>Path</Typography>
           </th>
           <th>
-            <Text fontWeight={theme.fontWeight.bold}>Swatch</Text>
+            <Typography fontWeight={theme.fontWeight.bold}>Swatch</Typography>
           </th>
         </tr>
         {Object.keys(theme.colors).map((color) => (
           <tr key={color}>
             <td>
-              <Text fontFamily="monospace">{color}</Text>
+              <Typography fontFamily="monospace">{color}</Typography>
             </td>
             <td>
-              <Text fontFamily="monospace">theme.colors.{color}</Text>
+              <Typography fontFamily="monospace">
+                theme.colors.{color}
+              </Typography>
             </td>
             <td>
               <FlexBox
@@ -63,9 +65,9 @@ export const Colors = () => {
                   height={pxToRem(100)}
                   width={pxToRem(150)}
                 />
-                <Text fontFamily="monospace">
+                <Typography fontFamily="monospace">
                   {theme.colors[color as keyof ColorModeColors]}
-                </Text>
+                </Typography>
               </FlexBox>
             </td>
           </tr>

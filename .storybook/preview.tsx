@@ -1,6 +1,6 @@
 import { addDecorator } from '@storybook/react';
+import React from 'react';
 
-import { StandardTheme } from '../src/constants/theme';
 import { ThemeProvider } from '../src/components/providers/ThemeProvider';
 
 export const parameters = {

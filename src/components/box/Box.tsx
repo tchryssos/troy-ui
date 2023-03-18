@@ -9,7 +9,7 @@ import {
 } from '~/constants/css';
 import { makeCssPropStyles } from '~/utils/css';
 
-type BoxProps = AllowedCommonCssProps &
+export type BoxProps = AllowedCommonCssProps &
   AllowedFlexboxCssProps &
   AllowedGridBoxCssProps &
   HTMLAttributes<HTMLDivElement> & {

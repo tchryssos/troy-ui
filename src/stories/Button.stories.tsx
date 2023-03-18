@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Button as ButtonComponent } from '~/components/button/BaseButton';
+import { BaseButton as ButtonComponent } from '~/components/button/BaseButton';
 
 import { COMMON_ARG_TYPES } from './argTypes';
 
