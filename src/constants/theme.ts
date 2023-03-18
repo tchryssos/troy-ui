@@ -111,7 +111,8 @@ const baseTheme = {
     64: pxToRem(64),
   },
   fontFamily: {
-    base: "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,'Helvetica Neue', sans-serif;",
+    normal:
+      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,'Helvetica Neue', sans-serif;",
     monospace: "Menlo, Monaco, Consolas, 'Courier New', monospace",
   },
   lineHeight: {

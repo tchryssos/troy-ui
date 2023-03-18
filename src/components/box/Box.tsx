@@ -1,16 +1,18 @@
 /* eslint-disable no-nested-ternary */
 import styled from '@emotion/styled';
+import { HTMLAttributes } from 'react';
 
 import {
   AllowedCommonCssProps,
   AllowedFlexboxCssProps,
   AllowedGridBoxCssProps,
-  makeCssPropStyles,
-} from '~/utils/css';
+} from '~/constants/css';
+import { makeCssPropStyles } from '~/utils/css';
 
 type BoxProps = AllowedCommonCssProps &
   AllowedFlexboxCssProps &
-  AllowedGridBoxCssProps & {
+  AllowedGridBoxCssProps &
+  HTMLAttributes<HTMLDivElement> & {
     className?: string;
   };
 

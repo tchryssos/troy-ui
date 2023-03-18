@@ -3,9 +3,9 @@ import { useContext } from 'react';
 
 import { Box } from '~/components/box/Box';
 import { FlexBox } from '~/components/box/FlexBox';
-import { Button } from '~/components/Button';
+import { Button } from '~/components/button/BaseButton';
 import { ThemeContext } from '~/components/providers/ThemeProvider';
-import { Text } from '~/components/Text';
+import { Text } from '~/components/Typography';
 import { ColorModeColors } from '~/typings/colorMode';
 import { pxToRem } from '~/utils/pxToRem';
 

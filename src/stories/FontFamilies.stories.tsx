@@ -3,7 +3,7 @@ import { useContext } from 'react';
 
 import { FlexBox } from '~/components/box/FlexBox';
 import { ThemeContext } from '~/components/providers/ThemeProvider';
-import { Text } from '~/components/Text';
+import { Text } from '~/components/Typography';
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
 export default {

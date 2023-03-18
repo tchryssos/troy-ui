@@ -12,6 +12,9 @@
     "build-storybook": "build-storybook",
     "test": "jest"
   },
+  "dependencies": {
+    "@mui/base": "^5.0.0-alpha.121"
+  },
   "peerDependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -71,6 +74,5 @@
     "*.{ts,tsx}": [
       "eslint --fix"
     ]
-  },
-  "dependencies": {}
+  }
 }

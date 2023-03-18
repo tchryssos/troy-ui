@@ -1,6 +1,6 @@
 import { ComponentMeta, ComponentStory } from '@storybook/react';
 
-import { Text } from '~/components/Text';
+import { Text } from '~/components/Typography';
 
 import { COMMON_ARG_TYPES } from './argTypes';
 
