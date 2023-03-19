@@ -6,12 +6,19 @@
   "source": "src/index.ts",
   "main": "dist/main.js",
   "module": "dist/module.js",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "test": "jest",
     "watch": "parcel watch",
-    "build": "parcel build && yarn tsc --emitDeclarationOnly --noEmit false"
+    "build": "NODE_OPTIONS=--no-experimental-fetch parcel build && yarn tsc --emitDeclarationOnly --noEmit false"
+  },
+  "targets": {
+    "main": {
+      "optimize": true
+    }
   },
   "dependencies": {
+    "@swc/helpers": "^0.4.14",
     "dompurify": "^3.0.1"
   },
   "peerDependencies": {

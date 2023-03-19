@@ -1,5 +1,5 @@
-type ColorHash = `#${string}`;
-type ColorRgba = `rgba(${number},${number},${number},${number})`;
+export type ColorHash = `#${string}`;
+export type ColorRgba = `rgba(${number},${number},${number},${number})`;
 export interface ColorModeColors {
   background: ColorHash;
   text: ColorHash;
