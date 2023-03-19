@@ -24,11 +24,11 @@ interface ThemeProviderProps {
   ignoreCssReset?: boolean;
 }
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({
+export function ThemeProvider({
   children,
   overrides,
   ignoreCssReset,
-}) => {
+}: ThemeProviderProps) {
   const [colorMode, setColorMode] = useState<ColorMode>('light');
 
   const theme = useMemo(
@@ -58,4 +58,4 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
       </EmotionThemeProvider>
     </ThemeContext.Provider>
   );
-};
+}
