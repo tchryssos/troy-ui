@@ -1,4 +1,4 @@
-import { Color } from '~/typings/theme';
+import { Color } from '../../typings/theme';
 
 export type BaseIconProps = {
   className?: string;
