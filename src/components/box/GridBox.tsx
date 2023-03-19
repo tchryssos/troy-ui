@@ -5,9 +5,8 @@ import {
   AllowedCommonCssProps,
   AllowedCustomCssSpacingProps,
   AllowedGridBoxCssProps,
-} from '~/constants/css';
-import { useBreakpointsAtLeast } from '~/hooks/breakpoints';
-
+} from '../../constants/css';
+import { useBreakpointsAtLeast } from '../../hooks/breakpoints';
 import { Box } from './Box';
 
 export type GridBoxProps = Omit<AllowedCommonCssProps, 'display'> &

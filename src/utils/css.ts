@@ -6,8 +6,8 @@ import {
   AllowedCustomCssProps,
   AllowedCustomCssSpacingProps,
   CUSTOM_THEME_CSS_PROPS,
-} from '~/constants/css';
-import { Theme } from '~/constants/theme';
+} from '../constants/css';
+import { Theme } from '../constants/theme';
 
 type CustomCssArgs = {
   currPropKey: keyof typeof CUSTOM_THEME_CSS_PROPS;

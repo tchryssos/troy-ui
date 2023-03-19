@@ -6,8 +6,8 @@ import {
   AllowedCommonCssProps,
   AllowedFlexboxCssProps,
   AllowedGridBoxCssProps,
-} from '~/constants/css';
-import { makeCssPropStyles } from '~/utils/css';
+} from '../../constants/css';
+import { makeCssPropStyles } from '../../utils/css';
 
 export type BoxProps = AllowedCommonCssProps &
   AllowedFlexboxCssProps &

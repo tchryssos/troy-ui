@@ -1,9 +1,8 @@
 import { Global, ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 import { createContext, useMemo, useState } from 'react';
 
-import { Theme, themes } from '~/constants/theme';
-import { ColorMode } from '~/typings/colorMode';
-
+import { Theme, themes } from '../../../constants/theme';
+import { ColorMode } from '../../../typings/colorMode';
 import { createGlobalStyles, GlobalWrapper } from './rootStyles';
 
 interface ThemeContextObj {

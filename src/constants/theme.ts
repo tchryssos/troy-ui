@@ -1,6 +1,6 @@
-import { BreakpointObject } from '~/typings/breakpoints';
-import { ColorModeColors, ColorRgba } from '~/typings/colorMode';
-import { pxToRem } from '~/utils/pxToRem';
+import { BreakpointObject } from '../typings/breakpoints';
+import { ColorModeColors, ColorRgba } from '../typings/colorMode';
+import { pxToRem } from '../utils/pxToRem';
 
 // START - BREAKPOINTS - START
 const breakpointValues: BreakpointObject<number> = {

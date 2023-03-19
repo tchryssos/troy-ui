@@ -5,8 +5,7 @@ import {
   AllowedCommonCssProps,
   AllowedCustomCssSpacingProps,
   AllowedFlexboxCssProps,
-} from '~/constants/css';
-
+} from '../../constants/css';
 import { Box } from './Box';
 
 export type FlexBoxProps = Omit<AllowedCommonCssProps, 'display'> &

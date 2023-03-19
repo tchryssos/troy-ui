@@ -1,9 +1,9 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { FlexBox } from '~/components/box/FlexBox';
-import { Theme } from '~/constants/theme';
-import { pxToRem } from '~/utils/pxToRem';
+import { Theme } from '../../../constants/theme';
+import { pxToRem } from '../../../utils/pxToRem';
+import { FlexBox } from '../../box/FlexBox';
 
 const marPadZero = css`
   margin: 0;

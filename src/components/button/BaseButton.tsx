@@ -2,9 +2,8 @@ import styled from '@emotion/styled';
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import { forwardRef } from 'react';
 
-import { Color } from '~/typings/theme';
-import { pxToRem } from '~/utils/pxToRem';
-
+import { Color } from '../../typings/theme';
+import { pxToRem } from '../../utils/pxToRem';
 import { FlexBox } from '../box/FlexBox';
 import { BaseButtonProps } from './types';
 

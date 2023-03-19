@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import * as CSS from 'csstype';
 
-import { Theme } from '~/constants/theme';
-import { Spacing } from '~/typings/theme';
+import { Spacing } from '../typings/theme';
+import { Theme } from './theme';
 
 export const ALLOWED_COMMON_CSS_KEYS = [
   'alignSelf',

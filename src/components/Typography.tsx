@@ -1,8 +1,8 @@
 import { Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { AllowedCommonCssProps, AllowedTextCssProps } from '~/constants/css';
-import { filterCssProps } from '~/utils/css';
+import { AllowedCommonCssProps, AllowedTextCssProps } from '../constants/css';
+import { filterCssProps } from '../utils/css';
 
 type TextProps = AllowedCommonCssProps &
   AllowedTextCssProps & {

@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 
-import { useTheme } from '~/hooks/theme';
-import { BreakpointSize } from '~/typings/breakpoints';
+import { useTheme } from '../../hooks/theme';
+import { BreakpointSize } from '../../typings/breakpoints';
 
 export const BreakpointsContext = createContext<BreakpointSize[]>(['xxs']);
 
@@ -11,11 +11,11 @@ interface BreakpointsProviderProps {
   overrides?: BreakpointSize[];
 }
 
-export const BreakpointsProvider: React.FC<BreakpointsProviderProps> = ({
+export function BreakpointsProvider({
   children,
   overrides,
   resizeCallback,
-}) => {
+}: BreakpointsProviderProps) {
   const theme = useTheme();
 
   const [windowBreakpoints, setWindowBreakpoints] = useState<BreakpointSize[]>(
@@ -47,4 +47,4 @@ export const BreakpointsProvider: React.FC<BreakpointsProviderProps> = ({
       {children}
     </BreakpointsContext.Provider>
   );
-};
+}
