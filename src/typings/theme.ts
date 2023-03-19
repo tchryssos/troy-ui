@@ -6,6 +6,6 @@ declare module '@emotion/react' {
 
 export type Spacing = keyof CustomTheme['spacing'];
 export type Color = keyof CustomTheme['colors'];
-export type BorderWidth = keyof CustomTheme['border']['borderWidth'];
+export type BorderWidth = keyof CustomTheme['borderWidth'];
 export type FontVariant = keyof CustomTheme['fontFamily'];
 export type ImportUrl = `@import url('${string}')`;
