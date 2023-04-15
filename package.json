@@ -2,11 +2,14 @@
   "name": "troy-ui",
   "version": "0.0.1",
   "license": "MIT",
-  "author": "Troy Chryssos <troy@troychryssos.com>",
+  "author": "Troy Chryssos <troychryssos@gmail.com>",
   "source": "src/index.ts",
   "main": "dist/main.js",
   "module": "dist/module.js",
   "browserslist": "> 0.5%, last 2 versions, not dead",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "jest",
     "watch": "parcel watch",
