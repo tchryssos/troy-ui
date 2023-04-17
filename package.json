@@ -92,6 +92,9 @@
     "ts-jest": "^29.0.3",
     "typescript": "^5.0.2"
   },
+  "resolutions": {
+    "webpack": "^5"
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
