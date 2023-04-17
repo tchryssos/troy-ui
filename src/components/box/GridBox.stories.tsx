@@ -16,7 +16,7 @@ const meta: Meta<typeof GridBox> = {
    * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
    * to learn how to generate automatic titles
    */
-  title: 'GridBox',
+  title: 'Box/GridBox',
   component: GridBox,
 };
 

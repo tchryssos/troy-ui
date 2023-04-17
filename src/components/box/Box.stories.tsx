@@ -7,7 +7,7 @@ const meta: Meta<typeof Box> = {
    * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
    * to learn how to generate automatic titles
    */
-  title: 'Box',
+  title: 'Box/Box',
   component: Box,
 };
 

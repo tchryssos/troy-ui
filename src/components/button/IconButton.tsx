@@ -10,7 +10,10 @@ interface StandardButtonProps extends BaseButtonProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-export type IconButtonProps = StandardButtonProps & {
+export type IconButtonProps = Omit<
+  StandardButtonProps,
+  'severity' | 'transparent'
+> & {
   isLoading?: boolean;
 };
 
@@ -60,12 +63,17 @@ const IconsWrapper = styled.div`
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   function IconButton(
-    { children, size = 'sm', isLoading, ...rest },
+    { children, size = 'sm', isLoading, disabled, ...rest },
     forwardedRef
   ) {
     return (
-      // eslint-disable-next-line react/jsx-props-no-spreading
-      <IconSafeButton {...rest} ref={forwardedRef} size={size}>
+      <IconSafeButton
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...rest}
+        disabled={disabled || isLoading}
+        ref={forwardedRef}
+        size={size}
+      >
         <IconsWrapper>
           {isLoading ? <LoadingSpinner title="Loading" /> : children}
         </IconsWrapper>

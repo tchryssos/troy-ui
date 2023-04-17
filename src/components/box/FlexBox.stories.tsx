@@ -7,7 +7,7 @@ const meta: Meta<typeof FlexBox> = {
    * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
    * to learn how to generate automatic titles
    */
-  title: 'FlexBox',
+  title: 'Box/FlexBox',
   component: FlexBox,
 };
 
