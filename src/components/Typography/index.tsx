@@ -29,7 +29,7 @@ const getFontSize = (theme: Theme, variantOrAs: VariantOrAs) => {
   const bodyLgSize = theme.fontSize[20];
   const titleSmSize = theme.fontSize[24];
   const titleSize = theme.fontSize[32];
-  // const titleLgSize = theme.fontSize[40];
+  const titleLgSize = theme.fontSize[40];
   const titleXlSize = theme.fontSize[56];
 
   const fontSizeLookup: Record<VariantOrAs, string> = {
@@ -40,7 +40,7 @@ const getFontSize = (theme: Theme, variantOrAs: VariantOrAs) => {
     'body-lg': bodyLgSize,
     'title-sm': titleSmSize,
     title: titleSize,
-    'title-lg': theme.fontSize[40],
+    'title-lg': titleLgSize,
     'title-xl': titleXlSize,
 
     // As
