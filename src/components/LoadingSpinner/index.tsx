@@ -1,8 +1,8 @@
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { FlexBox } from './box/FlexBox';
-import { LoadingQuarter } from './icons/LoadingQuarter';
+import { FlexBox } from '../box/FlexBox';
+import { LoadingQuarter } from '../icons/LoadingQuarter';
 
 const LoadingOuter = styled(FlexBox)`
   width: 100%;
@@ -34,12 +34,12 @@ export const LoadingSpinner = styled(LoadingQuarter)`
   animation: ${LoadingSpin} 1s linear infinite;
 `;
 
-interface LoadingPageProps {
+interface LoadingSpinnerProps {
   title: string;
   titleId?: string;
 }
 
-export function LoadingPageSpinner({ title, titleId }: LoadingPageProps) {
+export function LoadingPageSpinner({ title, titleId }: LoadingSpinnerProps) {
   return (
     <LoadingOuter center>
       <LoadingInner>
