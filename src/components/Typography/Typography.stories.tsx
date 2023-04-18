@@ -16,9 +16,11 @@ export default meta;
 type Story = StoryObj<typeof Typography>;
 
 export const Basic: Story = {
+  name: 'As span (default)',
   args: {
     children:
       "I've seen your picture / Your name in lights above it / This is your big debut / It's like a dream come true",
+    as: 'span',
   },
 };
 
@@ -67,5 +69,30 @@ export const h6: Story = {
   args: {
     ...Basic.args,
     as: 'h6',
+  },
+};
+
+export const p: Story = {
+  name: 'As p',
+  args: {
+    ...Basic.args,
+    as: 'p',
+  },
+};
+
+export const label: Story = {
+  name: 'As label',
+  args: {
+    ...Basic.args,
+    as: 'label',
+  },
+};
+
+export const variant: Story = {
+  name: 'Using "variant" prop',
+  args: {
+    ...Basic.args,
+    variant: 'title-xl',
+    as: 'p',
   },
 };
