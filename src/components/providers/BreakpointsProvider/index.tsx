@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from 'react';
 
-import { useTheme } from '../../hooks/theme';
-import { BreakpointSize } from '../../typings/breakpoints';
+import { useTheme } from '../../../hooks/theme';
+import { BreakpointSize } from '../../../typings/breakpoints';
 
 export const BreakpointsContext = createContext<BreakpointSize[]>(['xxs']);
 

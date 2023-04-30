@@ -10,12 +10,9 @@ interface StandardButtonProps extends BaseButtonProps {
   size?: 'sm' | 'md' | 'lg';
 }
 
-export type IconButtonProps = Omit<
-  StandardButtonProps,
-  'severity' | 'transparent'
-> & {
+export interface IconButtonProps extends StandardButtonProps {
   isLoading?: boolean;
-};
+}
 
 export const getIconButtonSize = (
   size: IconButtonProps['size'],
@@ -41,15 +38,14 @@ const IconSafeButton = styled(BaseButton)<Pick<IconButtonProps, 'size'>>(
       width: dimension,
       minWidth: dimension,
       minHeight: dimension,
-      backgroundColor: 'transparent',
       border: 'none',
       padding: theme.spacing[4],
-      ':hover': {
-        backgroundColor: theme.colors.accentLight,
-        filter: 'brightness(1.0)',
-      },
+      // ':hover': {
+      //   backgroundColor: theme.colors.accentLight,
+      //   filter: 'brightness(1.0)',
+      // },
       ':disabled': {
-        backgroundColor: 'transparent',
+        backgroundColor: 'smudge',
       },
     };
   }

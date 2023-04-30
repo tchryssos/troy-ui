@@ -12,9 +12,11 @@ type StyledProps = Pick<Required<BaseButtonProps>, 'transparent' | 'severity'>;
 const StyledButton = styled(ButtonUnstyled)<StyledProps>(
   ({ theme, transparent, severity }) => {
     let severityColor: Color = 'accentHeavy';
+    let textColor: Color = 'text';
     switch (severity) {
       case 'danger':
         severityColor = 'danger';
+        textColor = 'textAccent';
         break;
       case 'warning':
         severityColor = 'warning';
@@ -30,7 +32,7 @@ const StyledButton = styled(ButtonUnstyled)<StyledProps>(
         break;
     }
     return {
-      color: theme.colors.text,
+      color: theme.colors[textColor],
       cursor: 'pointer',
       minHeight: theme.spacing[32],
       minWidth: theme.spacing[32],
