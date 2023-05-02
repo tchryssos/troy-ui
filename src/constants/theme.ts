@@ -1,5 +1,5 @@
 import { BreakpointObject } from '../typings/breakpoints';
-import { ColorModeColors, ColorRgba } from '../typings/colorMode';
+import { ColorMode, ColorModeColors, ColorRgba } from '../typings/colorMode';
 import { pxToRem } from '../utils/pxToRem';
 
 // START - BREAKPOINTS - START
@@ -25,6 +25,7 @@ const breakpoints: BreakpointObject<`@media only screen and (${string}-width: ${
 
 // START - COLORS - START
 const lightModeColors: ColorModeColors = {
+  primary: '#3C91E6',
   background: '#fafafa',
   text: '#17242b',
   textAccent: '#4d4d4c',
@@ -92,6 +93,7 @@ const baseTheme = {
   },
   borderWidth: {
     1: pxToRem(1),
+    2: pxToRem(2),
     3: pxToRem(3),
   },
   borderRadius: {
@@ -126,16 +128,31 @@ const baseTheme = {
   },
 };
 
+interface ColorModeIndicator {
+  colorMode: ColorMode;
+}
+
+const lightColorMode: ColorModeIndicator = {
+  colorMode: 'light',
+};
+
+const darkColorMode: ColorModeIndicator = {
+  colorMode: 'dark',
+};
+
 export const LightTheme = {
   ...baseTheme,
+  ...lightColorMode,
   colors: lightModeColors,
   filters: lightModeFilters,
 };
 
 export const DarkTheme = {
   ...baseTheme,
+  ...darkColorMode,
   colors: darkModeColors,
   filters: darkModeFilters,
+  mode: 'dark',
 };
 
 export const themes = {

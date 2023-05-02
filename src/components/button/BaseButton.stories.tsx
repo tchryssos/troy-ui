@@ -1,6 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
+import { FlexBox, GridBox } from '../box';
+import { Typography } from '../Typography';
 import { BaseButton } from './BaseButton';
+import { BaseButtonProps } from './types';
 
 const meta: Meta<typeof BaseButton> = {
   /* 👇 The title prop is optional.
@@ -15,60 +18,42 @@ export default meta;
 
 type Story = StoryObj<typeof BaseButton>;
 
-export const Normal: Story = {
-  args: {
-    children: 'Click Me',
-    onClick: () => null,
-  },
+const severities: NonNullable<BaseButtonProps['severity']>[] = [
+  'normal',
+  'secondary',
+  'warning',
+  'danger',
+  'success',
+];
+
+function ButtonGrid({ variant }: { variant: BaseButtonProps['variant'] }) {
+  return (
+    <GridBox columns={3} maxWidth="500px" width="100%">
+      {severities.map((severity) => (
+        <FlexBox flexDirection="column" gap={4} key={severity}>
+          <BaseButton
+            severity={severity}
+            variant={variant}
+            onClick={() => null}
+          >
+            <Typography variant="body-xs">
+              {severity.charAt(0).toUpperCase() + severity.slice(1)}
+            </Typography>
+          </BaseButton>
+        </FlexBox>
+      ))}
+    </GridBox>
+  );
+}
+
+export const FillVariant: Story = {
+  render: () => <ButtonGrid variant="fill" />,
 };
 
-export const Transparent: Story = {
-  args: {
-    ...Normal.args,
-    transparent: true,
-  },
+export const OutlineVariant: Story = {
+  render: () => <ButtonGrid variant="outline" />,
 };
 
-export const Disabled: Story = {
-  args: {
-    ...Normal.args,
-    disabled: true,
-  },
-};
-
-export const Danger: Story = {
-  args: {
-    ...Normal.args,
-    severity: 'danger',
-  },
-};
-
-export const Warning: Story = {
-  args: {
-    ...Normal.args,
-    severity: 'warning',
-  },
-};
-
-export const Success: Story = {
-  args: {
-    ...Normal.args,
-    severity: 'success',
-  },
-};
-
-export const Secondary: Story = {
-  args: {
-    ...Normal.args,
-    severity: 'secondary',
-  },
-};
-
-export const ButtonLike: Story = {
-  render: () => (
-    // eslint-disable-next-line react/jsx-props-no-spreading
-    <BaseButton {...Normal.args}>
-      <a href="/">This child is a link</a>
-    </BaseButton>
-  ),
+export const TextVariant: Story = {
+  render: () => <ButtonGrid variant="text" />,
 };

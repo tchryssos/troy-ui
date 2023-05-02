@@ -6,7 +6,7 @@ export interface CoreButtonProps {
   type?: 'button' | 'submit';
   className?: string;
   disabled?: boolean;
-  transparent?: boolean;
+  variant?: 'fill' | 'outline' | 'text';
   buttonLike?: boolean;
   severity?: 'normal' | 'warning' | 'danger' | 'success' | 'secondary';
 }

@@ -2,64 +2,30 @@ import styled from '@emotion/styled';
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 import { forwardRef } from 'react';
 
-import { Color } from '../../typings/theme';
 import { pxToRem } from '../../utils/pxToRem';
 import { FlexBox } from '../box/FlexBox';
+import { getButtonStyles } from './getButtonStyles';
 import { BaseButtonProps } from './types';
 
-type StyledProps = Pick<Required<BaseButtonProps>, 'transparent' | 'severity'>;
+type StyledProps = Pick<Required<BaseButtonProps>, 'variant' | 'severity'>;
 
 const StyledButton = styled(ButtonUnstyled)<StyledProps>(
-  ({ theme, transparent, severity }) => {
-    let severityColor: Color = 'accentHeavy';
-    let textColor: Color = 'text';
-    switch (severity) {
-      case 'danger':
-        severityColor = 'danger';
-        textColor = 'textAccent';
-        break;
-      case 'warning':
-        severityColor = 'warning';
-        break;
-      case 'success':
-        severityColor = 'success';
-        break;
-      case 'secondary':
-        severityColor = 'smudge';
-        break;
-      case 'normal':
-      default:
-        break;
-    }
-    return {
-      color: theme.colors[textColor],
-      cursor: 'pointer',
-      minHeight: theme.spacing[32],
-      minWidth: theme.spacing[32],
-      backgroundColor: transparent
-        ? 'transparent'
-        : theme.colors[severityColor],
-      border: transparent
-        ? `${theme.borderWidth[1]} solid ${
-            severity !== 'normal'
-              ? theme.colors[severityColor]
-              : theme.colors.text
-          }`
-        : 'none',
-      borderRadius: theme.spacing[2],
-      // Non-standard padding matches default button padding
-      padding: `${pxToRem(1)} ${pxToRem(6)}`,
-      ':hover': {
-        filter: `brightness(${theme.filters.brightnessMod})`,
-      },
-      ':disabled': {
-        cursor: 'not-allowed',
-        backgroundColor: theme.colors.accentLight,
-        border: 'none',
-        filter: 'brightness(1.0)',
-      },
-    };
-  }
+  ({ theme, variant, severity }) => ({
+    ...getButtonStyles(theme, variant, severity),
+    cursor: 'pointer',
+    minHeight: theme.spacing[32],
+    minWidth: theme.spacing[32],
+    borderRadius: theme.spacing[2],
+    borderWidth: theme.borderWidth[2],
+    borderStyle: 'solid',
+    // Non-standard padding matches default button padding
+    padding: `${pxToRem(1)} ${pxToRem(6)}`,
+    ':disabled': {
+      cursor: 'not-allowed',
+      filter: 'brightness(1.0)',
+    },
+    transition: 'background-color 0.25s, filter 0.25s',
+  })
 );
 
 const ButtonLike = StyledButton.withComponent(FlexBox);
@@ -72,7 +38,7 @@ export const BaseButton = forwardRef<HTMLButtonElement, BaseButtonProps>(
       type = 'button',
       disabled,
       children,
-      transparent,
+      variant = 'text',
       buttonLike,
       severity = 'normal',
       ...rest
@@ -94,7 +60,7 @@ export const BaseButton = forwardRef<HTMLButtonElement, BaseButtonProps>(
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           ref={forwardedRef as any}
           severity={severity}
-          transparent={Boolean(transparent)}
+          variant={variant}
         >
           {children}
         </ButtonLike>
@@ -102,15 +68,13 @@ export const BaseButton = forwardRef<HTMLButtonElement, BaseButtonProps>(
     }
     return (
       <StyledButton
-        // eslint-disable-next-line react/jsx-props-no-spreading
         {...rest}
         className={className}
         disabled={disabled || (!onClick && type !== 'submit')}
         ref={forwardedRef}
         severity={severity}
-        transparent={Boolean(transparent)}
-        // eslint-disable-next-line react/button-has-type
         type={type}
+        variant={variant}
         onClick={onClick}
       >
         {children}
