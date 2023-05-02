@@ -13,12 +13,15 @@ export const getButtonStyles = (
   variant: NonNullable<BaseButtonProps['variant']>,
   severity: NonNullable<BaseButtonProps['severity']>
 ) => {
-  const { colors, colorMode } = theme;
+  const { colors } = theme;
 
   const fillSharedStyles: CSSObject = {
     borderColor: 'transparent',
     ':hover': {
       filter: `brightness(${theme.filters.brightnessMod})`,
+    },
+    ':disabled:hover': {
+      filter: 'saturate(50%), brightness(1.0)',
     },
   };
 
@@ -27,6 +30,9 @@ export const getButtonStyles = (
     ':hover': {
       backgroundColor: colors.smudge,
     },
+    ':disabled:hover': {
+      backgroundColor: 'transparent',
+    },
   };
 
   const textSharedStyles: CSSObject = {
@@ -34,6 +40,9 @@ export const getButtonStyles = (
     borderColor: 'transparent',
     ':hover': {
       backgroundColor: colors.smudge,
+    },
+    ':disabled:hover': {
+      backgroundColor: 'transparent',
     },
   };
 

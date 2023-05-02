@@ -22,7 +22,7 @@ const StyledButton = styled(ButtonUnstyled)<StyledProps>(
     padding: `${pxToRem(1)} ${pxToRem(6)}`,
     ':disabled': {
       cursor: 'not-allowed',
-      filter: 'brightness(1.0)',
+      filter: 'saturate(50%)',
     },
     transition: 'background-color 0.25s, filter 0.25s',
   })

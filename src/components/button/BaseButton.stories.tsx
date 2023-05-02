@@ -32,6 +32,7 @@ function ButtonGrid({ variant }: { variant: BaseButtonProps['variant'] }) {
       {severities.map((severity) => (
         <FlexBox flexDirection="column" gap={4} key={severity}>
           <BaseButton
+            disabled
             severity={severity}
             variant={variant}
             onClick={() => null}
