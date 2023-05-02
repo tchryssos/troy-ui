@@ -13,9 +13,7 @@ export const getButtonStyles = (
   variant: NonNullable<BaseButtonProps['variant']>,
   severity: NonNullable<BaseButtonProps['severity']>
 ) => {
-  const { colors, filters, colorMode } = theme;
-
-  const bgOrTextColor = colorMode === 'light' ? colors.background : colors.text;
+  const { colors, colorMode } = theme;
 
   const fillSharedStyles: CSSObject = {
     borderColor: 'transparent',
@@ -43,7 +41,7 @@ export const getButtonStyles = (
     fill: {
       normal: {
         backgroundColor: colors.primary,
-        color: bgOrTextColor,
+        color: colors.background,
         ...fillSharedStyles,
       },
       secondary: {
@@ -53,17 +51,17 @@ export const getButtonStyles = (
       },
       warning: {
         backgroundColor: colors.warning,
-        color: bgOrTextColor,
+        color: colors.background,
         ...fillSharedStyles,
       },
       danger: {
         backgroundColor: colors.danger,
-        color: bgOrTextColor,
+        color: colors.background,
         ...fillSharedStyles,
       },
       success: {
         backgroundColor: colors.success,
-        color: bgOrTextColor,
+        color: colors.background,
         ...fillSharedStyles,
       },
     },

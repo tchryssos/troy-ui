@@ -38,6 +38,7 @@ const lightModeColors: ColorModeColors = {
 };
 
 const darkModeColors: ColorModeColors = {
+  primary: '#4392F1',
   background: '#1d1f21',
   text: '#c5c8c6',
   textAccent: '#969896',

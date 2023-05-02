@@ -15,7 +15,7 @@ const StyledButton = styled(ButtonUnstyled)<StyledProps>(
     cursor: 'pointer',
     minHeight: theme.spacing[32],
     minWidth: theme.spacing[32],
-    borderRadius: theme.spacing[2],
+    borderRadius: theme.borderRadius[2],
     borderWidth: theme.borderWidth[2],
     borderStyle: 'solid',
     // Non-standard padding matches default button padding
