@@ -32,12 +32,7 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <ThemeProvider>
-        <FlexBox
-          justifyContent="flex-end"
-          position="absolute"
-          top={0}
-          right={0}
-        >
+        <FlexBox justifyContent="flex-end" position="fixed" top={0} right={0}>
           <ColorModeToggle />
         </FlexBox>
         <Story />
