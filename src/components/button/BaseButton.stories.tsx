@@ -26,13 +26,19 @@ const severities: NonNullable<BaseButtonProps['severity']>[] = [
   'success',
 ];
 
-function ButtonGrid({ variant }: { variant: BaseButtonProps['variant'] }) {
+function ButtonGrid({
+  variant,
+  disabled,
+}: {
+  variant: BaseButtonProps['variant'];
+  disabled?: boolean;
+}) {
   return (
     <GridBox columns={3} maxWidth="500px" width="100%">
       {severities.map((severity) => (
         <FlexBox flexDirection="column" gap={4} key={severity}>
           <BaseButton
-            disabled
+            disabled={disabled}
             severity={severity}
             variant={variant}
             onClick={() => null}
@@ -47,14 +53,29 @@ function ButtonGrid({ variant }: { variant: BaseButtonProps['variant'] }) {
   );
 }
 
+function ButtonDisplay({ variant }: { variant: BaseButtonProps['variant'] }) {
+  return (
+    <FlexBox flexDirection="column" gap={16} width="100%">
+      <FlexBox flexDirection="column" gap={8} width="100%">
+        <Typography>Normal</Typography>
+        <ButtonGrid variant={variant} />
+      </FlexBox>
+      <FlexBox flexDirection="column" gap={8} width="100%">
+        <Typography>Disabled</Typography>
+        <ButtonGrid disabled variant={variant} />
+      </FlexBox>
+    </FlexBox>
+  );
+}
+
 export const FillVariant: Story = {
-  render: () => <ButtonGrid variant="fill" />,
+  render: () => <ButtonDisplay variant="fill" />,
 };
 
 export const OutlineVariant: Story = {
-  render: () => <ButtonGrid variant="outline" />,
+  render: () => <ButtonDisplay variant="outline" />,
 };
 
 export const TextVariant: Story = {
-  render: () => <ButtonGrid variant="text" />,
+  render: () => <ButtonDisplay variant="text" />,
 };

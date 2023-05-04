@@ -4,7 +4,7 @@ import { forwardRef } from 'react';
 
 import { pxToRem } from '../../utils/pxToRem';
 import { FlexBox } from '../box/FlexBox';
-import { getButtonStyles } from './getButtonStyles';
+import { disabledSaturation, getButtonStyles } from './getButtonStyles';
 import { BaseButtonProps } from './types';
 
 type StyledProps = Pick<Required<BaseButtonProps>, 'variant' | 'severity'>;
@@ -22,7 +22,7 @@ const StyledButton = styled(ButtonUnstyled)<StyledProps>(
     padding: `${pxToRem(1)} ${pxToRem(6)}`,
     ':disabled': {
       cursor: 'not-allowed',
-      filter: 'saturate(50%)',
+      filter: `saturate(${disabledSaturation}%)`,
     },
     transition: 'background-color 0.25s, filter 0.25s',
   })

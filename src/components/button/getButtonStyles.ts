@@ -8,6 +8,8 @@ type ButtonVariants = Record<
   Record<NonNullable<BaseButtonProps['severity']>, CSSObject>
 >;
 
+export const disabledSaturation = 0;
+
 export const getButtonStyles = (
   theme: Theme,
   variant: NonNullable<BaseButtonProps['variant']>,
@@ -21,7 +23,7 @@ export const getButtonStyles = (
       filter: `brightness(${theme.filters.brightnessMod})`,
     },
     ':disabled:hover': {
-      filter: 'saturate(50%), brightness(1.0)',
+      filter: `saturate(${disabledSaturation}%), brightness(1.0)`,
     },
   };
 
@@ -66,6 +68,7 @@ export const getButtonStyles = (
       danger: {
         backgroundColor: colors.danger,
         color: colors.background,
+
         ...fillSharedStyles,
       },
       success: {
