@@ -87,13 +87,13 @@ export const Colors: StoryObj<unknown> = {
       labels={['Key', 'Color Value', 'Swatch']}
       themeKey="colors"
     >
-      {({ theme, key }) => (
+      {({ key }) => (
         <Box
           backgroundColor={key}
           borderColor="text"
           borderStyle="solid"
           borderWidth={1}
-          height={theme.spacing[48]}
+          height={48}
         />
       )}
     </ExampleGrid>
@@ -133,12 +133,12 @@ export const Spacing: StoryObj<unknown> = {
   name: 'spacing',
   render: () => (
     <ExampleGrid labels={['Key', 'Size Value', 'Example']} themeKey="spacing">
-      {({ value }) => (
+      {({ key }) => (
         <Box
           backgroundColor="text"
-          height={value}
+          height={key}
           justifySelf="start"
-          width={value}
+          width={key}
         />
       )}
     </ExampleGrid>
@@ -152,14 +152,14 @@ export const BorderWidth: StoryObj<unknown> = {
       labels={['Key', 'Width Value', 'Example']}
       themeKey="borderWidth"
     >
-      {({ value, theme }) => (
+      {({ key }) => (
         <Box
           borderColor="text"
           borderStyle="solid"
-          borderWidth={value}
-          height={theme.spacing[64]}
+          borderWidth={key}
+          height={64}
           justifySelf="start"
-          width={theme.spacing[64]}
+          width={64}
         />
       )}
     </ExampleGrid>
@@ -173,15 +173,15 @@ export const BorderRadius: StoryObj<unknown> = {
       labels={['Key', 'Width Value', 'Example']}
       themeKey="borderRadius"
     >
-      {({ value, theme }) => (
+      {({ value }) => (
         <Box
           borderColor="text"
           borderRadius={value}
           borderStyle="solid"
-          borderWidth={theme.borderWidth[2]}
-          height={theme.spacing[64]}
+          borderWidth={2}
+          height={64}
           justifySelf="start"
-          width={theme.spacing[64]}
+          width={64}
         />
       )}
     </ExampleGrid>

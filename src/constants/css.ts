@@ -54,6 +54,8 @@ export const ALLOWED_COMMON_CSS_KEYS = [
   'marginTop',
   'maxHeight',
   'maxWidth',
+  'minHeight',
+  'minWidth',
   'overflow',
   'padding',
   'paddingBottom',
@@ -166,6 +168,12 @@ export const CUSTOM_THEME_CSS_PROPS = {
   borderBottomWidth: 'borderWidth',
   borderRadius: 'borderRadius',
   fontSize: 'fontSize',
+  height: 'spacing',
+  width: 'spacing',
+  maxWidth: 'spacing',
+  maxHeight: 'spacing',
+  minWidth: 'spacing',
+  minHeight: 'spacing',
   // ts-prune-ignore-next
 } satisfies {
   [k in keyof RawAllowedCssProps]: keyof Theme;
