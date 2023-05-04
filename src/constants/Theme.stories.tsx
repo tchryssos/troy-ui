@@ -1,7 +1,9 @@
+import styled from '@emotion/styled';
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { Box, FlexBox, GridBox, Typography } from '../components';
+import { Box, GridBox, Typography } from '../components';
 import { useTheme } from '../hooks';
+import { pxToRem } from '../utils';
 import { Theme } from './theme';
 
 const meta: Meta<React.ReactNode> = {
@@ -15,13 +17,22 @@ const meta: Meta<React.ReactNode> = {
 
 export default meta;
 
+const GridText = styled(Typography)(({ theme }) => ({
+  fontFamily: theme.fontFamily.monospace,
+  width: 'fit-content',
+  height: 'fit-content',
+  padding: theme.spacing[4],
+}));
+
 function ExampleGrid({
   labels,
   themeKey,
+  gridTemplateColumns,
   children,
 }: {
   labels: [string, string, string];
   themeKey: keyof Theme;
+  gridTemplateColumns?: string;
   children: (props: {
     theme: Theme;
     key: string;
@@ -29,44 +40,53 @@ function ExampleGrid({
   }) => React.ReactNode;
 }) {
   const theme = useTheme();
+  const columnsVal = gridTemplateColumns || 'repeat(3, 1fr)';
   return (
-    <FlexBox flexDirection="column" gap={8} padding={16} width="100%">
-      <GridBox columns={3}>
-        <Typography fontFamily="monospace" fontWeight={600} variant="body-sm">
-          {labels[0]}
-        </Typography>
-        <Typography fontFamily="monospace" fontWeight={600} variant="body-sm">
-          {labels[1]}
-        </Typography>
-        <Typography fontFamily="monospace" fontWeight={600} variant="body-sm">
-          {labels[2]}
-        </Typography>
-      </GridBox>
+    <GridBox
+      gap={16}
+      gridTemplateColumns={columnsVal}
+      maxWidth={pxToRem(theme.breakpointValues.lg)}
+      padding={16}
+      width="100%"
+    >
+      <GridText fontWeight="bold" variant="body-xs">
+        {labels[0]}
+      </GridText>
+      <GridText fontWeight="bold" variant="body-xs">
+        {labels[1]}
+      </GridText>
+      <GridText fontWeight="bold" variant="body-xs">
+        {labels[2]}
+      </GridText>
       {Object.entries(theme[themeKey]).map(([key, value]) => (
-        <FlexBox flexDirection="column" gap={8} key={key}>
+        <>
           <Box
             backgroundColor="text"
+            gridColumn="span 3"
             height={theme.borderWidth[1]}
             width="100%"
           />
-          <GridBox columns={3}>
-            <Typography fontFamily="monospace" variant="body-sm">
-              {key}
-            </Typography>
-            <Typography fontFamily="monospace" variant="body-sm">
-              {value}
-            </Typography>
-            {children({ theme, key, value })}
-          </GridBox>
-        </FlexBox>
+          <GridText backgroundColor="smudge" variant="body-xs">
+            {key}
+          </GridText>
+          <GridText backgroundColor="smudge" variant="body-xs">
+            {value}
+          </GridText>
+          {children({ theme, key, value })}
+        </>
       ))}
-    </FlexBox>
+    </GridBox>
   );
 }
 
-export const Palette: StoryObj<unknown> = {
+export const Colors: StoryObj<unknown> = {
+  name: 'colors',
   render: () => (
-    <ExampleGrid labels={['Key', 'Color Value', 'Swatch']} themeKey="colors">
+    <ExampleGrid
+      gridTemplateColumns="1fr 1fr 2fr"
+      labels={['Key', 'Color Value', 'Swatch']}
+      themeKey="colors"
+    >
       {({ theme, key }) => (
         <Box
           backgroundColor={key}
@@ -83,13 +103,87 @@ export const Palette: StoryObj<unknown> = {
 const exampleText =
   'Wolodarsky, go get the keys to that fishing boat, and throw them in the water. No, wait. They might have another set. Just blow it up.';
 
-export const Fonts: StoryObj<unknown> = {
+export const FontFamilies: StoryObj<unknown> = {
+  name: 'fontFamily',
   render: () => (
     <ExampleGrid
-      labels={['Key', 'Font Value', 'Example']}
+      gridTemplateColumns="auto 2fr 3fr"
+      labels={['Key', 'Font Value', 'Example Text']}
       themeKey="fontFamily"
     >
       {({ key }) => <Typography fontFamily={key}>{exampleText}</Typography>}
+    </ExampleGrid>
+  ),
+};
+
+export const FontWeights: StoryObj<unknown> = {
+  name: 'fontWeight',
+  render: () => (
+    <ExampleGrid
+      gridTemplateColumns="1fr 1fr 2fr"
+      labels={['Key', 'Weight Value', 'Example Text']}
+      themeKey="fontWeight"
+    >
+      {({ key }) => <Typography fontWeight={key}>{exampleText}</Typography>}
+    </ExampleGrid>
+  ),
+};
+
+export const Spacing: StoryObj<unknown> = {
+  name: 'spacing',
+  render: () => (
+    <ExampleGrid labels={['Key', 'Size Value', 'Example']} themeKey="spacing">
+      {({ value }) => (
+        <Box
+          backgroundColor="text"
+          height={value}
+          justifySelf="start"
+          width={value}
+        />
+      )}
+    </ExampleGrid>
+  ),
+};
+
+export const BorderWidth: StoryObj<unknown> = {
+  name: 'borderWidth',
+  render: () => (
+    <ExampleGrid
+      labels={['Key', 'Width Value', 'Example']}
+      themeKey="borderWidth"
+    >
+      {({ value, theme }) => (
+        <Box
+          borderColor="text"
+          borderStyle="solid"
+          borderWidth={value}
+          height={theme.spacing[64]}
+          justifySelf="start"
+          width={theme.spacing[64]}
+        />
+      )}
+    </ExampleGrid>
+  ),
+};
+
+export const BorderRadius: StoryObj<unknown> = {
+  name: 'borderRadius',
+  render: () => (
+    <ExampleGrid
+      labels={['Key', 'Width Value', 'Example']}
+      themeKey="borderRadius"
+    >
+      {({ value, theme }) => (
+        <Box
+          borderColor="text"
+          borderRadius={value}
+          borderStyle="solid"
+          borderWidth={theme.borderWidth[2]}
+          height={theme.spacing[64]}
+          justifySelf="start"
+          width={theme.spacing[64]}
+        />
+      )}
     </ExampleGrid>
   ),
 };
