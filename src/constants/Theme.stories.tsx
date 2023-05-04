@@ -29,10 +29,12 @@ function ExampleGrid({
   themeKey,
   gridTemplateColumns,
   children,
+  className,
 }: {
   labels: [string, string, string];
   themeKey: keyof Theme;
   gridTemplateColumns?: string;
+  className?: string;
   children: (props: {
     theme: Theme;
     key: string;
@@ -43,6 +45,7 @@ function ExampleGrid({
   const columnsVal = gridTemplateColumns || 'repeat(3, 1fr)';
   return (
     <GridBox
+      className={className}
       gap={16}
       gridTemplateColumns={columnsVal}
       maxWidth={pxToRem(theme.breakpointValues.lg)}
@@ -116,6 +119,19 @@ export const FontFamilies: StoryObj<unknown> = {
   ),
 };
 
+export const FontSizes: StoryObj<unknown> = {
+  name: 'fontSize',
+  render: () => (
+    <ExampleGrid
+      gridTemplateColumns="1fr 1fr 2fr"
+      labels={['Key', 'Size Value', 'Example Text']}
+      themeKey="fontSize"
+    >
+      {({ key }) => <Typography fontSize={key}>{exampleText}</Typography>}
+    </ExampleGrid>
+  ),
+};
+
 export const FontWeights: StoryObj<unknown> = {
   name: 'fontWeight',
   render: () => (
@@ -185,5 +201,33 @@ export const BorderRadius: StoryObj<unknown> = {
         />
       )}
     </ExampleGrid>
+  ),
+};
+
+const BreakpointGrid = styled(ExampleGrid)`
+  overflow: scroll;
+`;
+
+export const BreakpointValues: StoryObj<unknown> = {
+  name: 'breakpointValues',
+  render: () => (
+    <BreakpointGrid
+      gridTemplateColumns="auto auto 1fr"
+      labels={['Key', 'Width Value', 'Example']}
+      themeKey="breakpointValues"
+    >
+      {({ value }) => (
+        <Box height={64} position="relative">
+          <Box
+            backgroundColor="text"
+            height={64}
+            left={0}
+            position="absolute"
+            top={0}
+            width={pxToRem(value as unknown as number)}
+          />
+        </Box>
+      )}
+    </BreakpointGrid>
   ),
 };
