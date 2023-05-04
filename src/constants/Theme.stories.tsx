@@ -206,6 +206,7 @@ export const BorderRadius: StoryObj<unknown> = {
 
 const BreakpointGrid = styled(ExampleGrid)`
   overflow: scroll;
+  max-width: unset;
 `;
 
 export const BreakpointValues: StoryObj<unknown> = {
