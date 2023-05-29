@@ -10,7 +10,7 @@ const meta: Meta<typeof BreakpointsProvider> = {
    * See https://storybook.js.org/docs/react/configure/overview#configure-story-loading
    * to learn how to generate automatic titles
    */
-  title: 'Providers/BreakpointsProvider',
+  title: 'Providers',
   component: BreakpointsProvider,
 };
 
@@ -34,7 +34,8 @@ function BreakpointChild() {
   );
 }
 
-export const ExampleConsumer: Story = {
+export const BreakpointsProviderStory: Story = {
+  name: 'BreakpointsProvider',
   render: () => (
     <BreakpointsProvider>
       <BreakpointChild />

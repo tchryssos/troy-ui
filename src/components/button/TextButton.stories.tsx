@@ -20,10 +20,3 @@ export const Basic: Story = {
     label: 'Click me',
   },
 };
-
-export const Transparent: Story = {
-  args: {
-    ...Basic.args,
-    transparent: true,
-  },
-};
