@@ -1,7 +1,9 @@
-import { ColorModeColors } from '~/typings/colorMode';
-import { pxToRem } from '~/utils/pxToRem';
+import { BreakpointObject } from '../typings/breakpoints';
+import { ColorMode, ColorModeColors, ColorRgba } from '../typings/colorMode';
+import { pxToRem } from '../utils/pxToRem';
 
-const breakpointValues = {
+// START - BREAKPOINTS - START
+const breakpointValues: BreakpointObject<number> = {
   xxs: 479,
   xs: 480,
   sm: 768,
@@ -10,30 +12,68 @@ const breakpointValues = {
   xl: 1440,
 };
 
-const standardModeColors: ColorModeColors = {
-  background: '#fafafa',
-  text: '#17242b',
-  success: '#00784e',
-  danger: '#db0033',
-  accentHeavy: '#adadad',
-  accentLight: '#e8e8e8',
-  smudge: 'rgba(0,0,0,0.05)',
-};
-
-const standardModeFilters = {
-  brightnessMod: 0.9,
-};
-
-const theme = {
-  breakpointValues,
-  breakpoints: {
+const breakpoints: BreakpointObject<`@media only screen and (${string}-width: ${number}px)`> =
+  {
     xxs: `@media only screen and (max-width: ${breakpointValues.xxs}px)`,
     xs: `@media only screen and (min-width: ${breakpointValues.xs}px)`,
     sm: `@media only screen and (min-width: ${breakpointValues.sm}px)`,
     md: `@media only screen and (min-width: ${breakpointValues.md}px)`,
     lg: `@media only screen and (min-width: ${breakpointValues.lg}px)`,
     xl: `@media only screen and (min-width: ${breakpointValues.xl}px)`,
-  },
+  };
+// END - BREAKPOINTS - END
+
+// START - COLORS - START
+const lightModeColors: ColorModeColors = {
+  primary: '#3C91E6',
+  background: '#fafafa',
+  text: '#17242b',
+  textAccent: '#4d4d4c',
+  success: '#00784e',
+  warning: '#c29e3b',
+  danger: '#db0033',
+  accentHeavy: '#adadad',
+  accentLight: '#e8e8e8',
+  smudge: 'rgba(0,0,0,0.05)',
+};
+
+const darkModeColors: ColorModeColors = {
+  primary: '#4392F1',
+  background: '#1d1f21',
+  text: '#c5c8c6',
+  textAccent: '#969896',
+  success: '#6fbd68',
+  warning: '#e9c47e',
+  danger: '#9a4d4d',
+  accentHeavy: '#2a3c3e',
+  accentLight: '#505253',
+  smudge: 'rgba(255,255,255,0.1)',
+};
+
+interface SharedFilters {
+  darken: ColorRgba;
+  lighten: ColorRgba;
+}
+
+const sharedFilters: SharedFilters = {
+  darken: 'rgba(0,0,0,0.5)',
+  lighten: 'rgba(255,255,255,0.5)',
+};
+
+const lightModeFilters = {
+  brightnessMod: 0.8,
+  ...sharedFilters,
+};
+
+const darkModeFilters = {
+  brightnessMod: 1.2,
+  ...sharedFilters,
+};
+// END - COLORS - END
+
+const baseTheme = {
+  breakpointValues,
+  breakpoints,
   spacing: {
     0: pxToRem(0),
     2: pxToRem(2),
@@ -52,25 +92,31 @@ const theme = {
     96: pxToRem(96),
     128: pxToRem(128),
   },
-  border: {
-    borderWidth: {
-      1: pxToRem(1),
-      3: pxToRem(3),
-    },
-    borderRadius: {
-      2: pxToRem(2),
-      4: pxToRem(4),
-      round: '50%',
-    },
+  borderWidth: {
+    1: pxToRem(1),
+    2: pxToRem(2),
+    3: pxToRem(3),
+  },
+  borderRadius: {
+    2: pxToRem(2),
+    4: pxToRem(4),
+    round: '50%',
   },
   fontSize: {
-    subBody: pxToRem(12),
-    body: pxToRem(14),
-    title: pxToRem(24),
+    14: pxToRem(14),
+    16: pxToRem(16),
+    18: pxToRem(18),
+    20: pxToRem(20),
+    24: pxToRem(24),
+    32: pxToRem(32),
+    40: pxToRem(40),
+    56: pxToRem(56),
+    64: pxToRem(64),
   },
   fontFamily: {
     normal:
-      "'Hiragino Kaku Gothic Pro', 'メイリオ', 'ＭＳ Ｐゴシック', -apple-system, BlinkMacSystemFont, sans-serif",
+      "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,'Helvetica Neue', sans-serif;",
+    monospace: "Menlo, Monaco, Consolas, 'Courier New', monospace",
   },
   lineHeight: {
     normal: 1.2,
@@ -83,12 +129,38 @@ const theme = {
   },
 };
 
-export const StandardTheme = {
-  ...theme,
-  colors: standardModeColors,
-  filters: standardModeFilters,
+interface ColorModeIndicator {
+  colorMode: ColorMode;
+}
+
+const lightColorMode: ColorModeIndicator = {
+  colorMode: 'light',
 };
 
-export type ThemeShape = typeof StandardTheme;
+const darkColorMode: ColorModeIndicator = {
+  colorMode: 'dark',
+};
+
+export const LightTheme = {
+  ...baseTheme,
+  ...lightColorMode,
+  colors: lightModeColors,
+  filters: lightModeFilters,
+};
+
+export const DarkTheme = {
+  ...baseTheme,
+  ...darkColorMode,
+  colors: darkModeColors,
+  filters: darkModeFilters,
+  mode: 'dark',
+};
+
+export const themes = {
+  light: LightTheme,
+  dark: DarkTheme,
+};
+
+export type ThemeShape = typeof LightTheme;
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface Theme extends ThemeShape {}

@@ -1,4 +1,5 @@
 {
+  "ignorePatterns": ["dist"],
   "parser": "@typescript-eslint/parser",
   "env": {
     "browser": true,
@@ -12,7 +13,8 @@
   "extends": [
     "eslint:recommended",
     "airbnb",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react-hooks/recommended"
   ],
   "root": true,
 
@@ -29,10 +31,12 @@
     "no-confusing-arrow": "off",
     "implicit-arrow-linebreak": "off",
     "operator-linebreak": "off",
-    "prefer-arrow-callback": "warn",
     "semi": "off",
     "indent": "off",
     "comma-dangle": "off",
+    "function-paren-newline": "off",
+    "no-shadow": "off", // ts-rule below
+    "prefer-arrow-callback": ["warn", { "allowNamedFunctions": true }],
 
     // import
     "import/no-named-as-default": "off",
@@ -40,6 +44,7 @@
     "import/prefer-default-export": "off",
     "import/no-unresolved": "off",
     "import/no-anonymous-default-export": "error",
+    "import/named": "off",
     "simple-import-sort/imports": "warn",
     "simple-import-sort/exports": "warn",
     "import/no-default-export": "warn",
@@ -72,14 +77,25 @@
     "react/self-closing-comp": "warn",
     "react/no-access-state-in-setstate": "error",
     "react/jsx-one-expression-per-line": "off",
+    "react/function-component-definition": "warn",
+    "react/jsx-no-useless-fragment": "off",
     "react/jsx-props-no-spreading": "off",
-    "react/function-component-definition": "off",
 
     // Typescript
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-empty-interface": "off",
-    "@typescript-eslint/no-non-null-assertion": "off"
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-shadow": "error"
   },
+  "overrides": [
+    {
+      "files": ["**/*/*.stories.*"],
+      "rules": {
+        "import/prefer-default-export": "error",
+        "import/no-default-export": "off"
+      }
+    }
+  ],
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true,

@@ -1,27 +1,20 @@
+/* eslint-disable no-nested-ternary */
 import styled from '@emotion/styled';
+import { HTMLAttributes } from 'react';
+
 import {
   AllowedCommonCssProps,
   AllowedFlexboxCssProps,
   AllowedGridBoxCssProps,
-  ALLOWED_COMMON_CSS_KEYS,
-  ALLOWED_FLEXBOX_CSS_KEYS,
-  ALLOWED_GRIDBOX_CSS_KEYS,
-  filterCssProps,
-} from '~/utils/css';
+} from '../../constants/css';
+import { makeCssPropStyles } from '../../utils/css';
 
-type BoxProps = AllowedCommonCssProps &
+export type BoxProps = AllowedCommonCssProps &
   AllowedFlexboxCssProps &
-  AllowedGridBoxCssProps & {
+  AllowedGridBoxCssProps &
+  HTMLAttributes<HTMLDivElement> & {
     className?: string;
   };
 
-export const Box: React.FC<BoxProps> = styled('div')<BoxProps>((props) => ({
-  ...filterCssProps(props, [
-    ...ALLOWED_COMMON_CSS_KEYS,
-    ...(props.display === 'flex' || props.display === 'inline-flex'
-      ? ALLOWED_FLEXBOX_CSS_KEYS
-      : props.display === 'grid' || props.display === 'inline-grid'
-      ? ALLOWED_GRIDBOX_CSS_KEYS
-      : []),
-  ]),
-}));
+export const Box: React.FC<BoxProps> =
+  styled('div')<BoxProps>(makeCssPropStyles);

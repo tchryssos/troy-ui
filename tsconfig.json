@@ -14,21 +14,18 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "lib": ["dom", "es2017"],
-    "module": "esnext",
-    "emitDeclarationOnly": true,
+    "module": "CommonJS",
+    "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": true,
     "declaration": true,
-    "declarationDir": "types",
+    "declarationDir": "dist/types",
     "noUnusedParameters": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "esnext",
-    "paths": {
-      "~/*": ["src/*"]
-    }
+    "target": "esnext"
   },
-  "exclude": ["node_modules"],
+  "exclude": ["node_modules", "dist"],
   "include": ["**/*.ts", "**/*.tsx"]
 }
