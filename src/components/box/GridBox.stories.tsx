@@ -62,7 +62,7 @@ export const WithTemplateColumnsAndRows: Story = {
       columnGap={8}
       gridTemplateColumns="1fr 2fr 1fr"
       gridTemplateRows="1fr 5fr 3fr"
-      rowGap={16}
+      rowGap={32}
     >
       <BorderedBox>
         <p>First child</p>
